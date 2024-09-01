@@ -28,6 +28,16 @@ const RestaurantList = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const filteredList = listofRestaurants.filter((res) =>
+      res.info.cuisines
+        .join("")
+        .toLowerCase()
+        .includes(searchText.toLowerCase())
+    );
+    setFilteredRestaurants(filteredList);
+  }, [searchText]);
+
   return listofRestaurants.length == 0 ? (
     <ShimmerofResCard />
   ) : (
@@ -43,18 +53,7 @@ const RestaurantList = () => {
             className="p-5 mr-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-[180px] h-[40px] items-center border border-black rounded-[20px]"
             type="text"
             value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-
-              const filteredList = listofRestaurants.filter((res) =>
-                res.info.cuisines
-                  .join("")
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase())
-              );
-
-              setFilteredRestaurants(filteredList);
-            }}
+            onChange={(e) => setSearchText(e.target.value)}
           ></input>
         </div>
 
@@ -68,7 +67,7 @@ const RestaurantList = () => {
         </button>
 
         <button
-          className="p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
+          className=" p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
           onClick={() => {
             filteredList = listofRestaurants.filter(
               (restaurants) => restaurants.info.avgRating >= 4.5
@@ -84,13 +83,13 @@ const RestaurantList = () => {
           className="p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
           onClick={() => {
             filteredList = listofRestaurants.filter(
-              (restaurants) => restaurants.info.avgRating > 3.5
+              (restaurants) => restaurants.info.avgRating > 4.0
             );
 
             setFilteredRestaurants(filteredList);
           }}
         >
-          Rating 3.5+
+          Rating 4.0+
         </button>
       </div>
 

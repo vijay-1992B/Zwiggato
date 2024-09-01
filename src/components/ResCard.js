@@ -6,7 +6,7 @@ const ResCard = ({ resData }) => {
     cloudinaryImageId,
     name,
     avgRating,
-    locality,
+
     areaName,
     cuisines,
     costForTwo,
@@ -15,7 +15,7 @@ const ResCard = ({ resData }) => {
   } = resData.info;
 
   return (
-    <div className="w-[320px]">
+    <div className="w-[320px] hover:scale-95 duration-200 ">
       {/* <img
         className="w-[100%] h-[210px] rounded-[30px] object-cover"
         src={CDN_URL + cloudinaryImageId}
@@ -58,13 +58,14 @@ const ResCard = ({ resData }) => {
         </div>
 
         <p className="text-[14px] text-[#02060c] opacity-[60%] py-[6px]">
-          {areaName.split(" ").slice(0, 2).join(" ")} ,{" "}
-          {locality.split(" ").slice(0, 2).join(" ")}
+          {areaName.split(" ").slice(0, 2).join(" ")}
         </p>
 
         <div className="topC flex justify-between">
           <h4 className="font-[400px] text-[14px]">{sla?.slaString}</h4>
-          <h4 className="font-[400px] text-[14px]">{sla?.lastMileTravel} km </h4>
+          <h4 className="font-[400px] text-[14px]">
+            {sla?.lastMileTravel} km{" "}
+          </h4>
         </div>
       </div>
     </div>
