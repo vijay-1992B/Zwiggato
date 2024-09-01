@@ -30,9 +30,9 @@ const ResCard = ({ resData }) => {
         />
         <div className="absolute inset-1 flex items-end justify-right ">
           <h4 className="text-white text-[13px] font-bold bg-[#256FEF] rounded-md py-[3px] px-[5px]">
-            {aggregatedDiscountInfoV3.header +
+            {aggregatedDiscountInfoV3?.header +
               " " +
-              aggregatedDiscountInfoV3.subHeader}
+              aggregatedDiscountInfoV3?.subHeader}
           </h4>
         </div>
       </div>
@@ -63,8 +63,8 @@ const ResCard = ({ resData }) => {
         </p>
 
         <div className="topC flex justify-between">
-          <h4 className="font-[400px] text-[14px]">{sla.slaString}</h4>
-          <h4 className="font-[400px] text-[14px]">{sla.lastMileTravel} km </h4>
+          <h4 className="font-[400px] text-[14px]">{sla?.slaString}</h4>
+          <h4 className="font-[400px] text-[14px]">{sla?.lastMileTravel} km </h4>
         </div>
       </div>
     </div>
