@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import ResCard from "./ResCard";
 import { useState } from "react";
-import resList from "../utils/mockData";
+import { RESTAURANT_MENU_API } from "../utils/constants";
+
 import ShimmerofResCard from "./ShimmerofResCard";
 
 const RestaurantList = () => {
@@ -10,9 +11,7 @@ const RestaurantList = () => {
   const [searchText, setSearchText] = useState("");
 
   const fetchData = async () => {
-    const raw = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6186784&lng=77.05335339999999"
-    );
+    const raw = await fetch(RESTAURANT_MENU_API);
     const data = await raw.json();
 
     setListofRestaurants(

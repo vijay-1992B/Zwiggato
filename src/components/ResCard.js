@@ -15,7 +15,7 @@ const ResCard = ({ resData }) => {
   } = resData.info;
 
   return (
-    <div className="w-[320px] hover:scale-95 duration-200 ">
+    <div className="w-[320px] hover:scale-95 duration-300 ease-in-out">
       {/* <img
         className="w-[100%] h-[210px] rounded-[30px] object-cover"
         src={CDN_URL + cloudinaryImageId}
@@ -30,9 +30,9 @@ const ResCard = ({ resData }) => {
         />
         <div className="absolute inset-1 flex items-end justify-right ">
           <h4 className="text-white text-[13px] font-bold bg-[#256FEF] rounded-md py-[3px] px-[5px]">
-            {aggregatedDiscountInfoV3?.header +
-              " " +
-              aggregatedDiscountInfoV3?.subHeader}
+            {aggregatedDiscountInfoV3?.header ? aggregatedDiscountInfoV3?.header : null } { " "}
+              
+              {aggregatedDiscountInfoV3?.subHeader ? aggregatedDiscountInfoV3?.subHeader : aggregatedDiscountInfoV3?.discountTag   }
           </h4>
         </div>
       </div>

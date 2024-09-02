@@ -1,35 +1,35 @@
 import logo from "../../logo.jpg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="flex justify-around items-center py-5  bg-white shadow-md ">
       <div className="left-header flex gap-6 items-center">
-        <a href="">
+        <Link to={"/"}>
           <img src={logo} className="w-44 mix-blend-multiply"></img>
-        </a>
-        <a href="" className="ml-2 self-center"></a>
+        </Link>
       </div>
 
       <div className="right-header flex gap-10 text-lg">
-        <a href="">
+        <Link to={"/search"}>
           <i className="ri-search-line"></i> Search
-        </a>
+        </Link>
 
-        <a href="">
+        <Link to={"/offers"}>
           <i className="ri-discount-percent-line"></i> Offers
-        </a>
+        </Link>
 
-        <a href="">
+        <Link to={"/help"}>
           <i className="ri-hand-heart-line"></i> Help
-        </a>
+        </Link>
 
-        <a href="">
+        <Link to={"/signIn"}>
           <i className="ri-user-3-line"></i> Sign In
-        </a>
-        <a href="">
-          {" "}
+        </Link>
+
+        <Link to={"/cart"}>
           <i className="ri-shopping-cart-2-line"></i> Cart
-        </a>
+        </Link>
       </div>
     </div>
   );
