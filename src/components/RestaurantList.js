@@ -1,17 +1,31 @@
 import React, { useEffect } from "react";
 import ResCard from "./ResCard";
 import { useState } from "react";
-import { RESTAURANT_MENU_API } from "../utils/constants";
+import { RESTAURANT_LIST_API } from "../utils/constants";
+
 
 import ShimmerofResCard from "./ShimmerofResCard";
+import { Link } from "react-router-dom";
+
 
 const RestaurantList = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [allData, setAllData] = useState([]);
+
+  
+   
+  
+
+  
+
 
   const fetchData = async () => {
-    const raw = await fetch(RESTAURANT_MENU_API);
+
+   
+
+    const raw = await fetch(RESTAURANT_LIST_API );
     const data = await raw.json();
 
     setListofRestaurants(
@@ -20,6 +34,8 @@ const RestaurantList = () => {
     setFilteredRestaurants(
       data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+
+    setAllData(data?.data);
   };
 
   useEffect(() => {
@@ -37,12 +53,13 @@ const RestaurantList = () => {
     setFilteredRestaurants(filteredList);
   }, [searchText]);
 
-  return listofRestaurants.length == 0 ? (
+  return listofRestaurants.length === 0 ? (
     <ShimmerofResCard />
   ) : (
     <div className="pl-[200px] pr-[100px] py-10 ">
       <h3 className=" text-2xl  font-extrabold  ">
-        Restaurants with online food delivery
+        {console.log(allData)}
+        {allData?.cards[1]?.card?.card?.header?.title}
       </h3>
 
       <div className="filterIcons flex gap-3 mt-5 mb-10 items-center ">
@@ -94,7 +111,14 @@ const RestaurantList = () => {
 
       <div className="flex flex-wrap gap-16 ">
         {filteredRestaurants.map((restaurants, index) => {
-          return <ResCard key={index} resData={restaurants} />;
+          return (
+            <Link
+              key={restaurants?.info?.id}
+              to={"/restaurant/" + restaurants?.info?.id}
+            >
+              <ResCard resData={restaurants} />
+            </Link>
+          );
         })}
       </div>
     </div>

@@ -5,7 +5,7 @@ const ResCard = ({ resData }) => {
   const {
     cloudinaryImageId,
     name,
-    avgRating,
+    avgRatingString,
 
     areaName,
     cuisines,
@@ -39,11 +39,11 @@ const ResCard = ({ resData }) => {
 
       <div className="pl-1 py-2">
         <div className="topA flex justify-between text-center">
-          <h4 className="font-bold text-[18px]">
-            {name.split(" ").slice(0, 3).join(" ")}
+          <h4 className="font-bold text-[18px] text-start">
+            {name}
           </h4>
           <h4 className="font-semibold text-[18px]">
-            {avgRating}
+            {avgRatingString}
             <i className="ri-star-fill text-[#14883f] text-[15px] pl-2 align-top"></i>
           </h4>
         </div>

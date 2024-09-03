@@ -11,13 +11,14 @@ import Cart from "./components/Cart";
 import Error from "./components/Error";
 import Footer from "./components/Footer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import ResMenu from "./components/ResMenu";
 
 const App = function () {
   return (
     <>
       <Header />
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "/restaurant/:resId",
+        element: <ResMenu />,
       },
     ],
     errorElement: <Error />,
