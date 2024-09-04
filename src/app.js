@@ -18,7 +18,7 @@ const App = function () {
     <>
       <Header />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
