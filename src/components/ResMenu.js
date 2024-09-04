@@ -26,7 +26,7 @@ const ResMenu = () => {
 
   if (resInfo.length === 0) return <ShimmerofResCard />;
   
-  if (resInfo.statusCode === 1) return <Error />;
+  if (resInfo.statusCode === 1 || !resInfo?.data?.cards) return <Error />;
 
   const {
     avgRatingString,
@@ -59,13 +59,13 @@ const ResMenu = () => {
           <h3 className=" text-sm my-2 text-[#FF5200] font-semibold underline">
             {cuisines.join(", ")}
           </h3>
-          <h3 className="my-2 font-semibold">
+          <h3 className="my-2 font-medium">
             <i class="ri-store-2-line"></i> {"Outlet - "}
             {areaName}
           </h3>
-          <div className="my-2 pb-3 border-b font-semibold">
-            <i class="ri-time-line mr-1"></i>
-            {sla?.slaString.toLowerCase()}
+          <div className="my-2 pb-3 border-b font-medium">
+            {sla?.slaString ? <i class="ri-time-line mr-1"></i> : null}
+            {sla?.slaString ? sla?.slaString.toLowerCase() : null}
           </div>
 
           <h3 className="text-[#282c3f] opacity-70">

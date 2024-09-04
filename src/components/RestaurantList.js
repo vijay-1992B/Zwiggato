@@ -3,10 +3,8 @@ import ResCard from "./ResCard";
 import { useState } from "react";
 import { RESTAURANT_LIST_API } from "../utils/constants";
 
-
 import ShimmerofResCard from "./ShimmerofResCard";
 import { Link } from "react-router-dom";
-
 
 const RestaurantList = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
@@ -14,18 +12,8 @@ const RestaurantList = () => {
   const [searchText, setSearchText] = useState("");
   const [allData, setAllData] = useState([]);
 
-  
-   
-  
-
-  
-
-
   const fetchData = async () => {
-
-   
-
-    const raw = await fetch(RESTAURANT_LIST_API );
+    const raw = await fetch(RESTAURANT_LIST_API);
     const data = await raw.json();
 
     setListofRestaurants(
@@ -44,11 +32,13 @@ const RestaurantList = () => {
   }, []);
 
   useEffect(() => {
-    const filteredList = listofRestaurants.filter((res) =>
-      res.info.cuisines
-        .join("")
-        .toLowerCase()
-        .includes(searchText.toLowerCase())
+    const filteredList = listofRestaurants.filter(
+      (res) =>
+        res.info.name.trim().toLowerCase().includes(searchText.trim().toLowerCase()) ||
+        res.info.cuisines
+          .join("").trim()
+          .toLowerCase()
+          .includes(searchText.trim().toLowerCase())
     );
     setFilteredRestaurants(filteredList);
   }, [searchText]);
@@ -65,8 +55,8 @@ const RestaurantList = () => {
       <div className="filterIcons flex gap-3 mt-5 mb-10 items-center ">
         <div className="searchBar">
           <input
-            placeholder="Search Cuisines"
-            className="p-5 mr-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-[180px] h-[40px] items-center border border-black rounded-[20px]"
+            placeholder="Restaurants/ Cuisines"
+            className="p-5 mr-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-auto h-[40px] items-center border border-black rounded-[20px]"
             type="text"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
