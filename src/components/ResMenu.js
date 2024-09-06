@@ -1,28 +1,19 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { RESTAURANT_MENU_API } from "../utils/constants";
+
 import ShimmerofResCard from "./ShimmerofResCard";
-import resMenuItems from "./resMenuItems";
+import useRestaurantMenu from "../utils/hooks/useRestaurantMenu";
+import useOnlineStatus from "../utils/hooks/useOnlineStatus";
+import Offline from "./Offline";
+
+import RestaurantCategory from "./RestaurantCategory";
 
 const ResMenu = () => {
-  const [resInfo, setResinfo] = useState([]);
-  const [menuCards, setMenuCards] = useState([]);
-
+  const status = useOnlineStatus();
   const { resId } = useParams();
 
-  const fetchMenu = async () => {
-    const raw = await fetch(RESTAURANT_MENU_API + resId);
+  const resInfo = useRestaurantMenu(resId);
 
-    const data = await raw.json();
-
-    setResinfo(data);
-  };
-
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  if (resInfo.length === 0) return <ShimmerofResCard />;
+  if (resInfo === null) return <ShimmerofResCard />;
 
   if (resInfo.statusCode === 1 || !resInfo?.data?.cards) return <Error />;
 
@@ -37,16 +28,20 @@ const ResMenu = () => {
     feeDetails,
   } = resInfo?.data?.cards[2]?.card?.card?.info;
 
-  const { itemCards } =
-    resInfo?.data?.cards[4].groupedCard.cardGroupMap.REGULAR.cards[2].card.card;
+  const categories =
+    resInfo?.data?.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter(
+      (c) =>
+        c.card.card["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
-  const { cards } = resInfo?.data?.cards[4].groupedCard.cardGroupMap.REGULAR;
-  console.log(cards);
-  console.log(itemCards);
+ 
+
+  if (status === false) return <Offline />;
 
   return (
     <div>
-      <div className=" flex justify-center mt-16 ">
+      <div className="infoCard flex justify-center mt-16 ">
         <div className=" w-[800px] ">
           <div className="">
             <h1 className="text-2xl font-bold bg-white items-start">{name}</h1>
@@ -66,17 +61,17 @@ const ResMenu = () => {
               {cuisines.join(", ")}
             </h3>
             <h3 className="my-2 font-medium">
-              <i class="ri-store-2-line"></i> {"Outlet - "}
+              <i className="ri-store-2-line"></i> {"Outlet - "}
               {areaName}
             </h3>
             <div className="my-2 pb-3 border-b font-medium">
-              {sla?.slaString ? <i class="ri-time-line mr-1"></i> : null}
+              {sla?.slaString ? <i className="ri-time-line mr-1"></i> : null}
               {sla?.slaString ? sla?.slaString.toLowerCase() : null}
             </div>
 
             <h3 className="text-[#282c3f] opacity-70">
               {feeDetails?.message ? (
-                <i class="ri-riding-line mr-2 "></i>
+                <i className="ri-riding-line mr-2 "></i>
               ) : null}
               {feeDetails?.message
                 ? feeDetails?.message.replace("<b>", "").replace("</b>", " ")
@@ -84,19 +79,19 @@ const ResMenu = () => {
             </h3>
           </div>
         </div>
+
+        
       </div>
 
-      <div>
-        {cards.map((item) => {
-          if (
-            item.card.card["@type"] ===
-            "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-          ) {
-            return <h1>{item.card.card.title}</h1>;
-            
-          }
-        })}
+      <div className="accordian bg-red-400 ">
+       
+
+        {categories.map((c) => (
+          <RestaurantCategory  />
+        ))}
       </div>
+
+      
     </div>
   );
 };

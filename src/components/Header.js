@@ -1,7 +1,12 @@
 import logo from "../../logo.jpg";
 import { Link } from "react-router-dom";
+// import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 
 const Header = () => {
+
+
+  // const status = useOnlineStatus()
+
   return (
     <div className="flex justify-around items-center py-5  bg-white shadow-md ">
       <div className="left-header flex gap-6 items-center">
@@ -30,6 +35,11 @@ const Header = () => {
         <Link to={"/cart"}>
           <i className="ri-shopping-cart-2-line"></i> Cart
         </Link>
+
+
+        {/* <Link to={"/cart"}>
+          Status: {status ? "✅" : "🔴"}
+        </Link> */}
       </div>
     </div>
   );

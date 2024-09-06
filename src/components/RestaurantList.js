@@ -5,6 +5,9 @@ import { RESTAURANT_LIST_API } from "../utils/constants";
 
 import ShimmerofResCard from "./ShimmerofResCard";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/hooks/useOnlineStatus";
+
+import Offline from "./Offline";
 
 const RestaurantList = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
@@ -34,14 +37,22 @@ const RestaurantList = () => {
   useEffect(() => {
     const filteredList = listofRestaurants.filter(
       (res) =>
-        res.info.name.trim().toLowerCase().includes(searchText.trim().toLowerCase()) ||
+        res.info.name
+          .trim()
+          .toLowerCase()
+          .includes(searchText.trim().toLowerCase()) ||
         res.info.cuisines
-          .join("").trim()
+          .join("")
+          .trim()
           .toLowerCase()
           .includes(searchText.trim().toLowerCase())
     );
     setFilteredRestaurants(filteredList);
   }, [searchText]);
+
+  const status = useOnlineStatus();
+
+  if (status === false) return <Offline />;
 
   return listofRestaurants.length === 0 ? (
     <ShimmerofResCard />
