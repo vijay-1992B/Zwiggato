@@ -93,15 +93,17 @@ const ResMenu = () => {
         {categories.map((c) => (
           <div key={c.card.card.title}>
             <RestaurantCategory  data={c} />
-            
-          </div>
-        ))}
 
-        {nestedCategories.map((c , index)=> (
+            {nestedCategories.map((c , index)=> (
           <div key={index}>
             <RestaurantNestedCategory  data={c}/>
           </div>
         ))}
+            
+          </div>
+        ))}
+
+        
       </div>
     </div>
   );
