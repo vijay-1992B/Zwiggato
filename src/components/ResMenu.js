@@ -6,6 +6,7 @@ import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 import Offline from "./Offline";
 
 import RestaurantCategory from "./RestaurantCategory";
+import RestaurantNestedCategory from "./RestaurantNestedCategory";
 
 const ResMenu = () => {
   const status = useOnlineStatus();
@@ -35,12 +36,19 @@ const ResMenu = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
+  const nestedCategories =
+    resInfo?.data?.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter(
+      (c) =>
+        c.card.card["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+    );
+
  
 
   if (status === false) return <Offline />;
 
   return (
-    <div>
+    <div className="border border-red-600  flex flex-col items-center m-auto">
       <div className="infoCard flex justify-center mt-16 ">
         <div className=" w-[800px] ">
           <div className="">
@@ -79,19 +87,22 @@ const ResMenu = () => {
             </h3>
           </div>
         </div>
-
-        
       </div>
 
-      <div className="accordian bg-red-400 ">
-       
-
+      <div className="accordian w-[800px] mt-5">
         {categories.map((c) => (
-          <RestaurantCategory  />
+          <div key={c.card.card.title}>
+            <RestaurantCategory  data={c} />
+            
+          </div>
+        ))}
+
+        {nestedCategories.map((c , index)=> (
+          <div key={index}>
+            <RestaurantNestedCategory  data={c}/>
+          </div>
         ))}
       </div>
-
-      
     </div>
   );
 };

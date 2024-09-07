@@ -59,7 +59,7 @@ const RestaurantList = () => {
   ) : (
     <div className="pl-[200px] pr-[100px] py-10 ">
       <h3 className=" text-2xl  font-extrabold  ">
-        {console.log(allData)}
+        
         {allData?.cards[1]?.card?.card?.header?.title}
       </h3>
 
