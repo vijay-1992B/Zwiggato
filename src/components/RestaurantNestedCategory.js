@@ -7,13 +7,20 @@ const RestaurantNestedCategory = ({ data }) => {
   return (
     <div className="">
       <div className="flex justify-between">
-        <h1 className="font-extrabold">{title}</h1>
-        <span>🔽</span>
+        <h1 className="font-extrabold">{title} </h1>
       </div>
       <div className="items">
         {categories.map((item) => (
           <div>
-            <h1>{item.title}</h1>
+            <div className="flex justify-between">
+            <span className="font-semibold">
+              {item.title}({item.itemCards.length})
+            </span>
+            <span>
+              <i class="ri-arrow-down-s-line text-2xl text-[&#xEA4E]"></i>
+            </span>
+            </div>
+
             <NestedCategoriesItems data={item.itemCards} />
           </div>
         ))}
