@@ -48,7 +48,7 @@ const ResMenu = () => {
   if (status === false) return <Offline />;
 
   return (
-    <div className="border border-red-600  flex flex-col items-center m-auto">
+    <div className="  flex flex-col items-center m-auto">
       <div className="infoCard flex justify-center mt-16 ">
         <div className=" w-[800px] ">
           <div className="">
