@@ -30,7 +30,7 @@ const RestaurantList = () => {
   };
 
   useEffect(() => {
-    console.log("Body rendered");
+    
     fetchData();
   }, []);
 

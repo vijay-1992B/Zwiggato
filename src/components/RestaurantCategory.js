@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CDN_URL, NO_IMAGE_URL } from "../utils/constants";
 
 const RestaurantCategory = ({ data }) => {
-  const [showItems, setShowItems] = useState(false);
+  const [showItems, setShowItems] = useState(true);
   const { title } = data?.card?.card;
 
   const itemCards = data?.card?.card?.itemCards;
@@ -15,9 +15,9 @@ const RestaurantCategory = ({ data }) => {
         onClick={() => {
           setShowItems(!showItems);
         }}
-        className="flex justify-between items-center"
+        className="flex justify-between items-center cursor-pointer"
       >
-        <h1 className="font-extrabold py-5 px-2">
+        <h1 className="font-extrabold py-5 px-2 ">
           {title} ({itemCards.length})
         </h1>
         <span>
@@ -27,7 +27,7 @@ const RestaurantCategory = ({ data }) => {
       <div className="items ">
         {showItems &&
           itemCards.map((item) => (
-            <div className="flex  justify-between py-10 px-2  border-b-2">
+            <div key={item.card.info.title} className="flex  justify-between py-10 px-2  border-b-2">
               <div className="w-8/12">
                 <h1 className="font-bold text-md  ">{item.card.info.name}</h1>
                 <div className="flex ">

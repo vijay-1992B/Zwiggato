@@ -2,17 +2,30 @@ import React from "react";
 import { CDN_URL, NO_IMAGE_URL } from "../utils/constants";
 import { useState } from "react";
 
-const NestedCategoriesItems = ({ data }) => {
+const NestedCategoriesItems = ({ data, item }) => {
   const [showNestedItems, setNestedShowItems] = useState(false);
-  const items = data;
 
   return (
     <div>
+      <div
+        onClick={() => {
+          setNestedShowItems(!showNestedItems);
+        }}
+        className={`flex justify-between cursor-pointer  py-3 mx-1 ${!showNestedItems ? "border-b-2" : null  } `}
+      >
+        <span className="font-bold ">
+          {item.title}
+          {"  "}({item.itemCards.length})
+        </span>
+        <span>
+          <i className="ri-arrow-down-s-line text-2xl text-[&#xEA4E]"></i>
+        </span>
+      </div>
       {showNestedItems &&
         data.map((item) => (
           <div
             key={item.card.info.name}
-            className="flex  justify-between py-8 pb-12  border-b-2"
+            className="flex  justify-between py-8 pb-12  border-b-2 mx-1"
           >
             <div className="w-8/12">
               <h1 className="font-bold text-md  ">{item.card.info.name}</h1>
