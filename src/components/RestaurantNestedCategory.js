@@ -6,19 +6,20 @@ const RestaurantNestedCategory = ({ data }) => {
 
   return (
     <div className="">
-      <div className="flex justify-between">
-        <h1 className="font-extrabold pb-4 pt-3">{title} </h1>
+      <div className="flex justify-between border-t-[14px] ">
+        <h1 className="font-extrabold pb-4 pt-4 mx-1 ">{title} </h1>
       </div>
       <div className="items">
         {categories.map((item) => (
-          <div>
-            <div className="flex justify-between">
-            <span className="font-semibold py-2 ">
-              {item.title}({item.itemCards.length})
-            </span>
-            <span>
-              <i class="ri-arrow-down-s-line text-2xl text-[&#xEA4E]"></i>
-            </span>
+          <div key={item.title}>
+            <div className="flex justify-between cursor-pointer border-b-2 py-3 mx-1 ">
+              <span className="font-bold">
+                {item.title}
+                {"  "}({item.itemCards.length})
+              </span>
+              <span>
+                <i className="ri-arrow-down-s-line text-2xl text-[&#xEA4E]"></i>
+              </span>
             </div>
 
             <NestedCategoriesItems data={item.itemCards} />

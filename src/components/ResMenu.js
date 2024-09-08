@@ -88,8 +88,8 @@ const ResMenu = () => {
           </div>
         </div>
       </div>
-
-      <div className="accordian w-[800px] mt-5">
+    <h1 className=" text-base mt-10 opacity-60 font-medium"><i className="ri-git-commit-line"></i>MENU<i className="ri-git-commit-line"></i></h1>
+      <div className="accordian w-[800px] mt-10">
         {categories.map((c) => (
           <div key={c.card.card.title}>
             <RestaurantCategory  data={c} />
