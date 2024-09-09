@@ -27,10 +27,10 @@ const RestaurantList = () => {
     );
 
     setAllData(data?.data);
+   
   };
 
   useEffect(() => {
-    
     fetchData();
   }, []);
 
@@ -59,7 +59,6 @@ const RestaurantList = () => {
   ) : (
     <div className="pl-[200px] pr-[100px] py-10 ">
       <h3 className=" text-2xl  font-extrabold  ">
-        
         {allData?.cards[1]?.card?.card?.header?.title}
       </h3>
 
