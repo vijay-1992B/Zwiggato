@@ -16,7 +16,11 @@ const RestaurantList = () => {
   const [allData, setAllData] = useState([]);
 
   const fetchData = async () => {
-    const raw = await fetch(RESTAURANT_LIST_API);
+    const raw = await fetch(RESTAURANT_LIST_API, {
+      headers: {
+        'x-cors-api-key' : "temp_b98cd3dba8508af91b6313736c7b22cf",
+      },
+    });
     const data = await raw.json();
 
     setListofRestaurants(
