@@ -16,7 +16,7 @@ const RestaurantList = () => {
   const [allData, setAllData] = useState([]);
 
   const fetchData = async () => {
-    const raw = await fetch(RESTAURANT_LIST_API);
+    const raw = await fetch(/api/restaurants);
     const data = await raw.json();
 
     setListofRestaurants(
