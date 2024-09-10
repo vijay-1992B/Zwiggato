@@ -92,7 +92,7 @@ const ResMenu = () => {
       <div className="accordian w-[800px] mt-10">
         {categories.map((c) => (
           <div key={c.card.card.title}>
-            <RestaurantCategory  data={c} />
+            <RestaurantCategory  data={c} /> 
 
             {nestedCategories.map((c , index)=> (
           <div key={index}>

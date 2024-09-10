@@ -27,7 +27,6 @@ const RestaurantList = () => {
     );
 
     setAllData(data?.data);
-   
   };
 
   useEffect(() => {
@@ -85,11 +84,12 @@ const RestaurantList = () => {
         <button
           className=" p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
           onClick={() => {
-            filteredList = listofRestaurants.filter(
+            const aboveFourPointFiveList = listofRestaurants.filter(
               (restaurants) => restaurants.info.avgRating >= 4.5
             );
 
-            setFilteredRestaurants(filteredList);
+            setFilteredRestaurants(aboveFourPointFiveList);
+            console.log(aboveFourPointFiveList);
           }}
         >
           Rating 4.5+
@@ -98,11 +98,12 @@ const RestaurantList = () => {
         <button
           className="p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
           onClick={() => {
-            filteredList = listofRestaurants.filter(
+            const aboveFourList = listofRestaurants.filter(
               (restaurants) => restaurants.info.avgRating > 4.0
             );
 
-            setFilteredRestaurants(filteredList);
+            setFilteredRestaurants(aboveFourList);
+            console.log(aboveFourList);
           }}
         >
           Rating 4.0+
