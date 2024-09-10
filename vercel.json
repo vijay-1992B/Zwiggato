@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6186784&lng=77.05335339999999"
     }
   ]
 }
