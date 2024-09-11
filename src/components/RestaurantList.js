@@ -16,12 +16,11 @@ const RestaurantList = () => {
   const [allData, setAllData] = useState([]);
 
   const fetchData = async () => {
-    const raw = await fetch(RESTAURANT_LIST_API, {
-      headers: {
-        'x-cors-api-key' : "temp_b98cd3dba8508af91b6313736c7b22cf",
-      },
-    });
+    const raw = await fetch(RESTAURANT_LIST_API);
     const data = await raw.json();
+
+    console.log(data);
+    
 
     setListofRestaurants(
       data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -56,8 +55,10 @@ const RestaurantList = () => {
   const status = useOnlineStatus();
 
   if (status === false) return <Offline />;
+  
+  console.log(listofRestaurants);
 
-  return listofRestaurants.length === 0 ? (
+  return listofRestaurants.length == 0 ? (
     <ShimmerofResCard />
   ) : (
     <div className="pl-[200px] pr-[100px] py-10 ">

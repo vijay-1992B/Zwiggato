@@ -29,6 +29,7 @@ const RestaurantCategory = ({ data }) => {
           itemCards.map((item) => (
             <div key={item.card.info.title} className="flex  justify-between py-10 px-2  border-b-2">
               <div className="w-8/12">
+              <h1>{item.card.info.itemAttribute.vegClassifier == "VEG" ? <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg" /> : <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg" /> }</h1>
                 <h1 className="font-bold text-md  ">{item.card.info.name}</h1>
                 <div className="flex ">
                   <h3 className="line-through font-semibold opacity-50">
@@ -67,15 +68,16 @@ const RestaurantCategory = ({ data }) => {
                   {item.card.info.description}
                 </p>
               </div>
-              <div className="w-2/12 ">
+              <div className="w-2/12 flex flex-col justify-center items-center">
                 <img
-                  className="w-44 h-32 rounded-xl bg-cover  "
+                  className="w-44 h-32 rounded-lg bg-cover  "
                   src={
                     item.card.info.imageId
                       ? CDN_URL + item.card.info.imageId
                       : NO_IMAGE_URL
                   }
                 />
+               <button className="border border-gray items-center my-1 w-full rounded-lg px-2 py-2 text-lg font-extrabold text-green-600 hover:bg-gray-200">ADD</button>
               </div>
             </div>
           ))}
