@@ -46,8 +46,8 @@ const RestaurantCategory = ({ data }) => {
                       ? item.card.info.price / 100
                       : item.card.info.defaultPrice / 100}
                   </h3>
-                  <span className="mx-1 text-[12px] font-bold text-gray-600">{item.card.info.offerTags ?  item.card.info.offerTags[0].title : null}</span>
-                  <span className="text-[12px] font-bold text-gray-600">{item.card.info.offerTags ?  item.card.info.offerTags[0].subTitle : null}</span>
+                  <span className="ml-2 mr-1 text-[11px] font-bold text-[#1BA672]">{item.card.info.offerTags ?  item.card.info.offerTags[0].title : null}</span>
+                  <span className="text-[11px] font-bold text-[#1BA672]">{item.card.info.offerTags ?  item.card.info.offerTags[0].subTitle : null}</span>
                 </div>
 
                 <div className="py-2 font-bold">
