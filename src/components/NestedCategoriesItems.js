@@ -11,7 +11,9 @@ const NestedCategoriesItems = ({ data, item }) => {
         onClick={() => {
           setNestedShowItems(!showNestedItems);
         }}
-        className={`flex justify-between cursor-pointer  py-3 mx-1 ${!showNestedItems ? "border-b-2" : null  } `}
+        className={`flex justify-between cursor-pointer  py-3 mx-1 ${
+          !showNestedItems ? "border-b-2" : null
+        } `}
       >
         <span className="font-bold ">
           {item.title}
@@ -28,12 +30,26 @@ const NestedCategoriesItems = ({ data, item }) => {
             className="flex  justify-between py-8 pb-12  border-b-2 mx-1"
           >
             <div className="w-8/12">
-            <div className="flex gap-2 items-end">
-             <h1>{item.card.info.itemAttribute.vegClassifier == "VEG" ? <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg" /> : <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg" /> }</h1>
-             <p  className="text-[#FF6E5A] text-sm font-semibold">{item.card.info?.isBestseller ? "Bestseller" : null}</p>
-             </div>
+              <div className="flex gap-2 items-end">
+                <h1>
+                  {item.card.info.itemAttribute.vegClassifier == "VEG" ? (
+                    <img
+                      className="size-5"
+                      src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg"
+                    />
+                  ) : (
+                    <img
+                      className="size-5"
+                      src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg"
+                    />
+                  )}
+                </h1>
+                <p className="text-[#FF6E5A] text-sm font-semibold">
+                  {item.card.info?.isBestseller ? "Bestseller" : null}
+                </p>
+              </div>
               <h1 className="font-bold text-md  ">{item.card.info.name}</h1>
-              <div className="flex">
+              <div className="flex items-center">
                 <h3 className="line-through font-semibold opacity-50">
                   {item.card.info.finalPrice
                     ? "₹" + item.card.info.finalPrice / 100
@@ -45,6 +61,17 @@ const NestedCategoriesItems = ({ data, item }) => {
                     ? item.card.info.price / 100
                     : item.card.info.defaultPrice / 100}
                 </h3>
+
+                <span className="mx-1 text-[12px] font-bold text-gray-600">
+                  {item.card.info.offerTags
+                    ? item.card.info.offerTags[0].title
+                    : null}
+                </span>
+                <span className="text-[12px] font-bold text-gray-600">
+                  {item.card.info.offerTags
+                    ? item.card.info.offerTags[0].subTitle
+                    : null}
+                </span>
               </div>
 
               <div className="py-2 font-bold">
@@ -79,7 +106,9 @@ const NestedCategoriesItems = ({ data, item }) => {
                     : NO_IMAGE_URL
                 }
               />
-              <button className="border border-gray items-center my-1 w-full rounded-lg px-2 py-1 text-lg font-extrabold text-green-600 hover:bg-gray-200">ADD</button>
+              <button className="border border-gray items-center my-1 w-full rounded-lg px-2 py-1 text-lg font-extrabold text-green-600 hover:bg-gray-200">
+                ADD
+              </button>
             </div>
           </div>
         ))}

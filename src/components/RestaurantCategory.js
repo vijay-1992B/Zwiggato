@@ -33,8 +33,8 @@ const RestaurantCategory = ({ data }) => {
              <h1>{item.card.info.itemAttribute.vegClassifier == "VEG" ? <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg" /> : <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg" /> }</h1>
              <p  className="text-[#FF6E5A] text-sm font-semibold">{item.card.info?.isBestseller ? "Bestseller" : null}</p>
              </div>
-                <h1 className="font-bold text-md  ">{item.card.info.name}</h1>
-                <div className="flex ">
+                <h1 className="font-bold text-md ">{item.card.info.name}</h1>
+                <div className="flex items-center ">
                   <h3 className="line-through font-semibold opacity-50">
                     {item.card.info.finalPrice
                       ? "₹" + item.card.info.finalPrice / 100
@@ -46,6 +46,8 @@ const RestaurantCategory = ({ data }) => {
                       ? item.card.info.price / 100
                       : item.card.info.defaultPrice / 100}
                   </h3>
+                  <span className="mx-1 text-[12px] font-bold text-gray-600">{item.card.info.offerTags ?  item.card.info.offerTags[0].title : null}</span>
+                  <span className="text-[12px] font-bold text-gray-600">{item.card.info.offerTags ?  item.card.info.offerTags[0].subTitle : null}</span>
                 </div>
 
                 <div className="py-2 font-bold">
@@ -67,8 +69,8 @@ const RestaurantCategory = ({ data }) => {
                   </span>
                 </div>
 
-                <p className="text-sm font-medium">
-                  {item.card.info.description}
+                <p className="text-sm font-medium w-11/12">
+                  {item.card.info.description }
                 </p>
               </div>
               <div className="w-2/12 flex flex-col justify-center items-center">
