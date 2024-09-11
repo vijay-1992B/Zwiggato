@@ -28,7 +28,10 @@ const NestedCategoriesItems = ({ data, item }) => {
             className="flex  justify-between py-8 pb-12  border-b-2 mx-1"
           >
             <div className="w-8/12">
-            <h1>{item.card.info.itemAttribute.vegClassifier == "VEG" ? <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg" /> : <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg" /> }</h1>
+            <div className="flex gap-2 items-end">
+             <h1>{item.card.info.itemAttribute.vegClassifier == "VEG" ? <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg" /> : <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg" /> }</h1>
+             <p  className="text-[#FF6E5A] text-sm font-semibold">{item.card.info?.isBestseller ? "Bestseller" : null}</p>
+             </div>
               <h1 className="font-bold text-md  ">{item.card.info.name}</h1>
               <div className="flex">
                 <h3 className="line-through font-semibold opacity-50">
