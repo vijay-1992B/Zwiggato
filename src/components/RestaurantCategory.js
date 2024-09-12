@@ -28,7 +28,7 @@ const RestaurantCategory = ({ data }) => {
         {showItems &&
           itemCards.map((item) => (
             <div key={item.card.info.title} className="flex  justify-between py-10 px-2  border-b-2">
-              <div className="w-8/12">
+              <div className="w-9/12">
              <div className="flex gap-2 items-end">
              <h1>{item.card.info.itemAttribute.vegClassifier == "VEG" ? <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg" /> : <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg" /> }</h1>
              <p  className="text-[#FF6E5A] text-sm font-semibold">{item.card.info?.isBestseller ? "Bestseller" : null}</p>
@@ -69,7 +69,7 @@ const RestaurantCategory = ({ data }) => {
                   </span>
                 </div>
 
-                <p className="text-sm font-medium w-11/12">
+                <p className="text-sm font-medium w-full">
                   {item.card.info.description }
                 </p>
               </div>
