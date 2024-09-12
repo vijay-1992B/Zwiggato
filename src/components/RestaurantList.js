@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ResCard from "./ResCard";
 import { useState } from "react";
 import { RESTAURANT_LIST_API } from "../utils/constants";
-import WhatsOnYourMind from "./whatsOnYourMind";
+import WhatsOnYourMind from "./WhatsOnYourMind";
 
 import ShimmerofResCard from "./ShimmerofResCard";
 import { Link } from "react-router-dom";
@@ -16,7 +16,7 @@ const RestaurantList = () => {
   const [searchText, setSearchText] = useState("");
   const [allData, setAllData] = useState([]);
 
-  const [womData , setWomData] = useState([]);
+  const [womData, setWomData] = useState([]);
 
   const fetchData = async () => {
     const raw = await fetch(RESTAURANT_LIST_API);
@@ -31,10 +31,10 @@ const RestaurantList = () => {
 
     setAllData(data?.data);
 
-    setWomData(data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info)
-    console.log(womData)
-
-     
+    setWomData(
+      data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
+    );
+    console.log(womData);
   };
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const RestaurantList = () => {
   ) : (
     <div className="pl-[200px] pr-[100px] py-10 ">
       <WhatsOnYourMind data={womData} />
-     
+
       <h3 className=" text-2xl mt-10  font-extrabold  ">
         {allData?.cards[1]?.card?.card?.header?.title}
       </h3>
