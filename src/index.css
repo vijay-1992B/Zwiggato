@@ -32,6 +32,3 @@ body {
   background-color: #d82224; /* Color when hovering over the scrollbar */
 }
 
-@media only screen and (max-width: 768px) {
-  /* Styles for mobile view */
-}

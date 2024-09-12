@@ -9,12 +9,14 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 
 import Offline from "./Offline";
+import TopBrands from "./TopBrands";
 
 const RestaurantList = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [allData, setAllData] = useState([]);
+  const [topBrands, setTopBrands] = useState([]);
 
   const [womData, setWomData] = useState([]);
 
@@ -34,7 +36,12 @@ const RestaurantList = () => {
     setWomData(
       data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
     );
-    console.log(womData);
+
+    setTopBrands(
+      data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+
+    
   };
 
   useEffect(() => {
@@ -60,15 +67,17 @@ const RestaurantList = () => {
   const status = useOnlineStatus();
 
   if (status === false) return <Offline />;
+  
 
   return listofRestaurants.length == 0 ? (
     <ShimmerofResCard />
   ) : (
-    <div className="pl-[200px] pr-[100px] py-10 ">
+    <div className="pl-[200px] pr-[100px]">
       <WhatsOnYourMind data={womData} />
+      <TopBrands data={topBrands} />
 
       <h3 className=" text-2xl mt-10  font-extrabold  ">
-        {allData?.cards[1]?.card?.card?.header?.title}
+        {allData?.cards[2]?.card?.card?.title}
       </h3>
 
       <div className="filterIcons flex gap-3 mt-5 mb-10 items-center ">
