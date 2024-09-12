@@ -12,15 +12,19 @@ import Error from "./components/Error";
 import Footer from "./components/Footer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import ResMenu from "./components/ResMenu";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 const Cart = lazy(() => import("./components/Cart"));
 
 const App = function () {
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <Provider store={store}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </Provider>
     </>
   );
 };

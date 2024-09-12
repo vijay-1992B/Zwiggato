@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { CDN_URL, NO_IMAGE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem , removeItem , clearCart } from "../utils/slices/cartSlice";
 
 const RestaurantCategory = ({ data }) => {
   const [showItems, setShowItems] = useState(true);
   const { title } = data?.card?.card;
 
   const itemCards = data?.card?.card?.itemCards;
+
+  const dispatch = useDispatch()
+  
 
   return (
     
@@ -27,7 +32,7 @@ const RestaurantCategory = ({ data }) => {
       <div className="items ">
         {showItems &&
           itemCards.map((item) => (
-            <div key={item.card.info.title} className="flex  justify-between py-10 px-2  border-b-2">
+            <div key={item.card.info.id} className="flex  justify-between py-10 px-2  border-b-2">
               <div className="w-9/12">
              <div className="flex gap-2 items-end">
              <h1>{item.card.info.itemAttribute.vegClassifier == "VEG" ? <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg" /> : <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg" /> }</h1>
@@ -82,7 +87,7 @@ const RestaurantCategory = ({ data }) => {
                       : NO_IMAGE_URL
                   }
                 />
-               <button className="border border-gray items-center my-1 w-full rounded-lg px-2 py-2 text-lg font-extrabold text-green-600 hover:bg-gray-200">ADD</button>
+               <button onClick={()=>dispatch(addItem(item))} className="border border-gray items-center my-1 w-full rounded-lg px-2 py-2 text-lg font-extrabold text-green-600 hover:bg-gray-200">ADD</button>
               </div>
             </div>
           ))}
