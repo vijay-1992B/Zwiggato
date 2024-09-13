@@ -10,7 +10,7 @@ const Header = () => {
   // const status = useOnlineStatus()
 
   return (
-    <div className="flex justify-around items-center py-5  bg-white shadow-md ">
+    <div className="flex justify-around items-center py-4  mb-5  bg-white shadow-md sticky top-0 z-50 ">
       <div className="left-header flex gap-6 items-center">
         <Link to={"/"}>
           <img src={logo} className="w-44 mix-blend-multiply"></img>
@@ -35,8 +35,7 @@ const Header = () => {
         </Link>
 
         <Link to={"/cart"}>
-          <i className="ri-shopping-cart-2-line"></i> Cart - ({cartItems.length}{" "}
-          items)
+        <i className="ri-shopping-cart-2-line mx-1"></i> Cart ({cartItems.length})
         </Link>
 
         {/* <Link to={"/cart"}>

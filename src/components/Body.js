@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Body = () => {
   return (
     <>
+    
       <RestaurantList />
       <ToastContainer />
     </>

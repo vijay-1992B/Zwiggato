@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 const NestedCategoriesItems = ({ data, item }) => {
   const [showNestedItems, setNestedShowItems] = useState(false);
 
-  const dispatch = useDispatch();
+  
 
   const notify = () =>
     toast.success("Item added to cart !", {
@@ -22,6 +22,8 @@ const NestedCategoriesItems = ({ data, item }) => {
       theme: "dark",
       transition: Slide,
     });
+
+    const dispatch = useDispatch();
 
   return (
     <div>
@@ -133,11 +135,14 @@ const NestedCategoriesItems = ({ data, item }) => {
                 </button>
               </div>
             </div>
+          
           </div>
         ))}
-      <ToastContainer />
+      
     </div>
+    
   );
+  <ToastContainer />
 };
 
 export default NestedCategoriesItems;

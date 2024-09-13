@@ -15,8 +15,6 @@ import ResMenu from "./components/ResMenu";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 
-
-
 const Cart = lazy(() => import("./components/Cart"));
 
 const App = function () {
@@ -76,4 +74,4 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={router} />);
+root.render(<RouterProvider router={ router} />);

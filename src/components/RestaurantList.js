@@ -10,6 +10,7 @@ import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 
 import Offline from "./Offline";
 import TopBrands from "./TopBrands";
+import ItemNotFound from "./ItemNotFound";
 
 const RestaurantList = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
@@ -72,9 +73,11 @@ const RestaurantList = () => {
   return listofRestaurants.length == 0 ? (
     <ShimmerofResCard />
   ) : (
-    <div className="pl-[200px] pr-[100px]">
-      <WhatsOnYourMind data={womData} />
+     <div className="pl-[200px] pr-[100px]">
+    <WhatsOnYourMind data={womData} />
       <TopBrands data={topBrands} />
+    <div className=" min-h-[90vh] ">
+      
 
       <h3 className=" text-2xl mt-10  font-extrabold  ">
         {allData?.cards[2]?.card?.card?.title}
@@ -130,8 +133,9 @@ const RestaurantList = () => {
       </div>
 
       <div className="flex flex-wrap gap-16 ">
-        {filteredRestaurants.map((restaurants, index) => {
-          return (
+        
+        {filteredRestaurants.length  === 0 ? <ItemNotFound /> : filteredRestaurants.map((restaurants, index) => {
+          return  (
             <Link
               key={restaurants?.info?.id}
               to={"/restaurant/" + restaurants?.info?.id}
@@ -141,6 +145,7 @@ const RestaurantList = () => {
           );
         })}
       </div>
+    </div>
     </div>
   );
 };

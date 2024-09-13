@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CDN_URL, NO_IMAGE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { addItem, removeItem, clearCart } from "../utils/slices/cartSlice";
+import { addItem } from "../utils/slices/cartSlice";
 import { Slide, ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -12,17 +12,19 @@ const RestaurantCategory = ({ data }) => {
 
   const itemCards = data?.card?.card?.itemCards;
 
-  const dispatch = useDispatch();
   const notify = () =>
     toast.success("Item added to cart !", {
       position: "bottom-center",
-      autoClose: 1000,
+      autoClose: 1,
       hideProgressBar: true,
       pauseOnHover: true,
       draggable: true,
       theme: "dark",
       transition: Slide,
     });
+
+  const dispatch = useDispatch();
+
   return (
     <div className="text-base items-center border-t-[14px]">
       <div
