@@ -41,8 +41,6 @@ const RestaurantList = () => {
     setTopBrands(
       data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-
-    
   };
 
   useEffect(() => {
@@ -68,84 +66,84 @@ const RestaurantList = () => {
   const status = useOnlineStatus();
 
   if (status === false) return <Offline />;
-  
 
   return listofRestaurants.length == 0 ? (
     <ShimmerofResCard />
   ) : (
-     <div className="pl-[200px] pr-[100px]">
-    <WhatsOnYourMind data={womData} />
+    <div className="pl-[200px] pr-[100px]">
+      <WhatsOnYourMind data={womData} />
       <TopBrands data={topBrands} />
-    <div className=" min-h-[90vh] ">
-      
+      <div className=" min-h-[90vh] ">
+        <h3 className=" text-2xl mt-10  font-extrabold  ">
+          {allData?.cards[2]?.card?.card?.title}
+        </h3>
 
-      <h3 className=" text-2xl mt-10  font-extrabold  ">
-        {allData?.cards[2]?.card?.card?.title}
-      </h3>
+        <div className="filterIcons flex gap-3 mt-5 mb-10 items-center ">
+          <div className="searchBar">
+            <input
+              placeholder="Restaurants/ Cuisines"
+              className="p-5 mr-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-auto h-[40px] items-center border border-black rounded-[20px]"
+              type="text"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            ></input>
+          </div>
 
-      <div className="filterIcons flex gap-3 mt-5 mb-10 items-center ">
-        <div className="searchBar">
-          <input
-            placeholder="Restaurants/ Cuisines"
-            className="p-5 mr-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-auto h-[40px] items-center border border-black rounded-[20px]"
-            type="text"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          ></input>
+          <button
+            className="p-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-[80px] h-[40px] items-center border border-black rounded-[20px]"
+            onClick={() => {
+              setFilteredRestaurants(listofRestaurants);
+            }}
+          >
+            All
+          </button>
+
+          <button
+            className=" p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
+            onClick={() => {
+              const aboveFourPointFiveList = listofRestaurants.filter(
+                (restaurants) => restaurants.info.avgRating >= 4.5
+              );
+
+              setFilteredRestaurants(aboveFourPointFiveList);
+              console.log(aboveFourPointFiveList);
+            }}
+          >
+            Rating 4.5+
+          </button>
+
+          <button
+            className="p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
+            onClick={() => {
+              const aboveFourList = listofRestaurants.filter(
+                (restaurants) => restaurants.info.avgRating > 4.0
+              );
+
+              setFilteredRestaurants(aboveFourList);
+              console.log(aboveFourList);
+            }}
+          >
+            Rating 4.0+
+          </button>
         </div>
 
-        <button
-          className="p-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-[80px] h-[40px] items-center border border-black rounded-[20px]"
-          onClick={() => {
-            setFilteredRestaurants(listofRestaurants);
-          }}
-        >
-          All
-        </button>
-
-        <button
-          className=" p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
-          onClick={() => {
-            const aboveFourPointFiveList = listofRestaurants.filter(
-              (restaurants) => restaurants.info.avgRating >= 4.5
-            );
-
-            setFilteredRestaurants(aboveFourPointFiveList);
-            console.log(aboveFourPointFiveList);
-          }}
-        >
-          Rating 4.5+
-        </button>
-
-        <button
-          className="p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
-          onClick={() => {
-            const aboveFourList = listofRestaurants.filter(
-              (restaurants) => restaurants.info.avgRating > 4.0
-            );
-
-            setFilteredRestaurants(aboveFourList);
-            console.log(aboveFourList);
-          }}
-        >
-          Rating 4.0+
-        </button>
+        <div className="flex flex-wrap gap-16 ">
+          {filteredRestaurants.length === 0 ? (
+            <ItemNotFound />
+          ) : (
+            filteredRestaurants.map((restaurants, index) => {
+              return (
+                <Link
+                  key={restaurants?.info?.id}
+                  to={"/restaurant/" + restaurants?.info?.id}
+                >
+                  <ResCard resData={restaurants} />
+                </Link>
+              );
+            })
+          )}
+        </div>
       </div>
-
-      <div className="flex flex-wrap gap-16 ">
-        
-        {filteredRestaurants.length  === 0 ? <ItemNotFound /> : filteredRestaurants.map((restaurants, index) => {
-          return  (
-            <Link
-              key={restaurants?.info?.id}
-              to={"/restaurant/" + restaurants?.info?.id}
-            >
-              <ResCard resData={restaurants} />
-            </Link>
-          );
-        })}
-      </div>
-    </div>
     </div>
   );
 };

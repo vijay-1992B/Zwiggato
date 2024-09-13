@@ -17,7 +17,7 @@ const Header = () => {
         </Link>
       </div>
 
-      <div className="right-header flex gap-10 text-lg">
+      <div className="right-header flex gap-8 text-lg">
         <Link to={"/search"}>
           <i className="ri-search-line"></i> Search
         </Link>
@@ -35,7 +35,7 @@ const Header = () => {
         </Link>
 
         <Link to={"/cart"}>
-        <i className="ri-shopping-cart-2-line mx-1"></i> Cart ({cartItems.length})
+        <i className="ri-shopping-cart-2-line mx-1"></i> Cart <sup className="text-white  text-sm inline-block text-center  size-5 rounded-xl bg-orange-500">{cartItems.length}</sup> 
         </Link>
 
         {/* <Link to={"/cart"}>
