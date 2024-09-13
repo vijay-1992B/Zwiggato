@@ -15,6 +15,8 @@ import ResMenu from "./components/ResMenu";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 
+
+
 const Cart = lazy(() => import("./components/Cart"));
 
 const App = function () {

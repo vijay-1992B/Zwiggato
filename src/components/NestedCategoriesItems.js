@@ -1,9 +1,27 @@
 import React from "react";
 import { CDN_URL, NO_IMAGE_URL } from "../utils/constants";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addItem, removeItem, clearCart } from "../utils/slices/cartSlice";
+import { Slide, ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const NestedCategoriesItems = ({ data, item }) => {
   const [showNestedItems, setNestedShowItems] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const notify = () =>
+    toast.success("Item added to cart !", {
+      position: "bottom-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "dark",
+      transition: Slide,
+    });
 
   return (
     <div>
@@ -106,12 +124,18 @@ const NestedCategoriesItems = ({ data, item }) => {
                     : NO_IMAGE_URL
                 }
               />
-              <button className="border border-gray items-center my-1 w-full rounded-lg px-2 py-1 text-lg font-extrabold text-green-600 hover:bg-gray-200">
-                ADD
-              </button>
+              <div className="w-full" onClick={notify}>
+                <button
+                  onClick={() => dispatch(addItem(item))}
+                  className="border border-gray items-center my-1 w-full rounded-lg px-2 py-1 text-lg font-extrabold text-green-600 hover:bg-gray-200"
+                >
+                  ADD
+                </button>
+              </div>
             </div>
           </div>
         ))}
+      <ToastContainer />
     </div>
   );
 };

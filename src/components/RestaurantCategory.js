@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { CDN_URL, NO_IMAGE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { addItem , removeItem , clearCart } from "../utils/slices/cartSlice";
+import { addItem, removeItem, clearCart } from "../utils/slices/cartSlice";
+import { Slide, ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const RestaurantCategory = ({ data }) => {
   const [showItems, setShowItems] = useState(true);
@@ -9,12 +12,18 @@ const RestaurantCategory = ({ data }) => {
 
   const itemCards = data?.card?.card?.itemCards;
 
-  const dispatch = useDispatch()
-  
-
+  const dispatch = useDispatch();
+  const notify = () =>
+    toast.success("Item added to cart !", {
+      position: "bottom-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "dark",
+      transition: Slide,
+    });
   return (
-    
-     
     <div className="text-base items-center border-t-[14px]">
       <div
         onClick={() => {
@@ -32,12 +41,29 @@ const RestaurantCategory = ({ data }) => {
       <div className="items ">
         {showItems &&
           itemCards.map((item) => (
-            <div key={item.card.info.id} className="flex  justify-between py-10 px-2  border-b-2">
+            <div
+              key={item.card.info.id}
+              className="flex  justify-between py-10 px-2  border-b-2"
+            >
               <div className="w-9/12">
-             <div className="flex gap-2 items-end">
-             <h1>{item.card.info.itemAttribute.vegClassifier == "VEG" ? <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg" /> : <img className="size-5" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg" /> }</h1>
-             <p  className="text-[#FF6E5A] text-sm font-semibold">{item.card.info?.isBestseller ? "Bestseller" : null}</p>
-             </div>
+                <div className="flex gap-2 items-end">
+                  <h1>
+                    {item.card.info.itemAttribute.vegClassifier == "VEG" ? (
+                      <img
+                        className="size-5"
+                        src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg"
+                      />
+                    ) : (
+                      <img
+                        className="size-5"
+                        src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg"
+                      />
+                    )}
+                  </h1>
+                  <p className="text-[#FF6E5A] text-sm font-semibold">
+                    {item.card.info?.isBestseller ? "Bestseller" : null}
+                  </p>
+                </div>
                 <h1 className="font-bold text-md ">{item.card.info.name}</h1>
                 <div className="flex items-center ">
                   <h3 className="line-through font-semibold opacity-50">
@@ -51,8 +77,16 @@ const RestaurantCategory = ({ data }) => {
                       ? item.card.info.price / 100
                       : item.card.info.defaultPrice / 100}
                   </h3>
-                  <span className="ml-2 mr-1 text-[11px] font-bold text-[#1BA672]">{item.card.info.offerTags ?  item.card.info.offerTags[0].title : null}</span>
-                  <span className="text-[11px] font-bold text-[#1BA672]">{item.card.info.offerTags ?  item.card.info.offerTags[0].subTitle : null}</span>
+                  <span className="ml-2 mr-1 text-[11px] font-bold text-[#1BA672]">
+                    {item.card.info.offerTags
+                      ? item.card.info.offerTags[0].title
+                      : null}
+                  </span>
+                  <span className="text-[11px] font-bold text-[#1BA672]">
+                    {item.card.info.offerTags
+                      ? item.card.info.offerTags[0].subTitle
+                      : null}
+                  </span>
                 </div>
 
                 <div className="py-2 font-bold">
@@ -75,7 +109,7 @@ const RestaurantCategory = ({ data }) => {
                 </div>
 
                 <p className="text-sm font-medium w-full">
-                  {item.card.info.description }
+                  {item.card.info.description}
                 </p>
               </div>
               <div className="w-2/12 flex flex-col justify-center items-center">
@@ -87,11 +121,20 @@ const RestaurantCategory = ({ data }) => {
                       : NO_IMAGE_URL
                   }
                 />
-               <button onClick={()=>dispatch(addItem(item))} className="border border-gray items-center my-1 w-full rounded-lg px-2 py-2 text-lg font-extrabold text-green-600 hover:bg-gray-200">ADD</button>
+
+                <div className="w-full" onClick={notify}>
+                  <button
+                    onClick={() => dispatch(addItem(item))}
+                    className="border border-gray items-center my-1 w-full rounded-lg px-2 py-2 text-lg font-extrabold text-green-600 hover:bg-gray-200"
+                  >
+                    ADD
+                  </button>
+                </div>
               </div>
             </div>
           ))}
       </div>
+      <ToastContainer />
     </div>
   );
 };
