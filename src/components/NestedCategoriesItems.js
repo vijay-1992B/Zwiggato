@@ -15,7 +15,7 @@ const NestedCategoriesItems = ({ data, item }) => {
   const notify = () =>
     toast.success("Item added to cart !", {
       position: "bottom-center",
-      autoClose: 1000,
+      autoClose: 500,
       hideProgressBar: true,
       pauseOnHover: true,
       draggable: true,

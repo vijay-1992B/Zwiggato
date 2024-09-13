@@ -15,7 +15,7 @@ const RestaurantCategory = ({ data }) => {
   const notify = () =>
     toast.success("Item added to cart !", {
       position: "bottom-center",
-      autoClose: 1,
+      autoClose: 500,
       hideProgressBar: true,
       pauseOnHover: true,
       draggable: true,
