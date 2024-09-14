@@ -1,23 +1,46 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import RestaurantCategory from "./RestaurantCategory";
-import { CDN_URL } from "../utils/constants";
+import { CDN_URL, NO_IMAGE_URL } from "../utils/constants";
+import { clearCart, removeItem } from "../utils/slices/cartSlice";
+import EmptyCart from "./EmptyCart";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   console.log(cartItems);
 
+  const dispatch = useDispatch();
+
+  const handleRemoveItem = (item) => {
+    
+    dispatch(removeItem({ id: item?.card?.info?.id }));
+  };
+
+  if (cartItems.length === 0) return <EmptyCart />;
+
   return (
-    <div className="min-h-[60vh]  flex justify-center items-center ">
+    <div className="min-h-[60vh]  flex justify-center items-center mt-24 ">
       <div className="container flex justify-center items-center gap-8 ">
-        <div className="left w-5/12 max-h-[70vh] overflow-auto scroll ">
-          <h1 className="text-2xl font-semibold ">Cart</h1>
+        <div className="left w-5/12 max-h-[70vh] overflow-auto scroll min-h-[50vh] ">
+          <div className="flex justify-between">
+            <h1 className="  text-2xl font-semibold ">Cart</h1>
+            <btn
+              className="border bg-red-700 text-white px-4 py-1 rounded-lg text-sm border-red-700 mr-6 cursor-pointer"
+              onClick={() => dispatch(clearCart())}
+            >
+              Clear Cart
+            </btn>
+          </div>
 
           {cartItems.map((item) => (
             <div className="flex my-10 py-4 pr-8  ">
               <div className=" ">
                 <img
                   className="bg-cover w-36 h-32 rounded-[6%] object-cover   pr-4 "
-                  src={CDN_URL + item.card.info.imageId}
+                  src={
+                    item.card.info.imageId
+                      ? CDN_URL + item.card.info.imageId
+                      : NO_IMAGE_URL
+                  }
                 />
               </div>
               <div className="w-full">
@@ -34,7 +57,10 @@ const Cart = () => {
                 </h1>
                 <div className="flex justify-between items-center pt-2">
                   <span>Counter</span>
-                  <button className="border px-4 py-2 rounded-lg text-sm border-orange-600 text-orange-600">
+                  <button
+                    onClick={() => handleRemoveItem(item)}
+                    className="border hover:bg-red-700 hover:text-white px-4 py-2 rounded-lg text-sm border-orange-600 text-orange-600"
+                  >
                     Remove
                   </button>
                 </div>
