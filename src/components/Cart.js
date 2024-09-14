@@ -12,7 +12,20 @@ import { useState } from "react";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  
+
+  const t = cartItems.map((i) =>
+    Math.round(
+      ((i?.card?.info ? i?.card?.info?.price : i?.card?.info?.defaultPrice * i?.count) /
+        100) *
+        i.count
+    )
+  );
+
+  let total = 0;
+  for (let i = 0; i < t.length; i++) {
+    total += t[i];
+  }
 
   const dispatch = useDispatch();
 
@@ -62,12 +75,28 @@ const Cart = () => {
                   {item.card.info.description.split(" ").slice(0, 8).join(" ")}
                   ...
                 </h1>
-                <h1 className="font-semibold ">
-                  ₹
-                  {item?.card?.info?.price
-                    ? item?.card?.info?.price / 100
-                    : item?.card?.info?.defaultPrice / 100}
-                </h1>
+                <div className="flex gap-1">
+                  <span className="font-semibold ">
+                    {" "}
+                    ₹
+                    {Math.round(
+                      item?.card?.info?.price
+                        ? item?.card?.info?.price / 100
+                        : item?.card?.info?.defaultPrice / 100
+                    ) * item.count}
+                  </span>
+
+                  <span>
+                    {" "}
+                    (
+                    {Math.round(
+                      item?.card?.info?.price
+                        ? item?.card?.info?.price / 100
+                        : item?.card?.info?.defaultPrice / 100
+                    )}{" "}
+                    x {item.count})
+                  </span>
+                </div>
                 <div className="flex justify-between items-center pt-2">
                   <span>
                     <button
@@ -98,24 +127,36 @@ const Cart = () => {
 
         <div className="right border-2 w-4/12 h-[50vh] flex flex-col justify-between p-9 shadow-lg">
           <h1 className="text-2xl font-semibold ">Order Summary</h1>
-          <div className="flex justify-between">
-            <span>Price(26 items)</span>
-            <span>Rs-25844</span>
-          </div >
+          <div className="flex justify-between border-t-2 py-4">
+            <span>Price({cartItems.length} items)</span>
+            <span className="font-bold text-lg">₹{total}</span>
+          </div>
           <div className="flex justify-between">
             <span>Discount(10%)</span>
-            <span>Rs-2584.4</span>
+            <span className="font-semibold text-lg">
+              ₹{Math.round(total * 0.1)}
+            </span>
           </div>
           <div className="flex justify-between">
             <span>Delivery Charges</span>
-            <span>Rs-80</span>
+            <span className="font-semibold text-lg">
+              ₹{Math.round(total * 0.05)}
+            </span>
           </div>
-          <div>You will save (2584.4) on this Order 🎉 </div>
-          <div className="flex justify-between">
-            <span>Total Amount</span>
-            <span>Rs-26400</span>
+          <div>
+            You will save{" "}
+            <span className="font-semibold">₹{Math.round(total * 0.1)}</span> on
+            this Order 🎉{" "}
           </div>
-          <button className="px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl">PLACE ORDER</button>
+          <div className="flex justify-between border-y-2 py-4">
+            <span className="text-2xl font-semibold">Total Amount</span>
+            <span className="font-bold text-lg">
+              ₹{Math.round(total - (total * 0.10) + (total * 0.05))}
+            </span>
+          </div>
+          <button className="px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl">
+            PLACE ORDER
+          </button>
         </div>
       </div>
     </div>
