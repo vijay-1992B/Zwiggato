@@ -1,8 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import RestaurantCategory from "./RestaurantCategory";
 import { CDN_URL, NO_IMAGE_URL } from "../utils/constants";
-import { clearCart, removeItem } from "../utils/slices/cartSlice";
+import {
+  clearCart,
+  removeItem,
+  addItem,
+  removeEntireItem,
+} from "../utils/slices/cartSlice";
 import EmptyCart from "./EmptyCart";
+import { useState } from "react";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -10,9 +16,16 @@ const Cart = () => {
 
   const dispatch = useDispatch();
 
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
+
   const handleRemoveItem = (item) => {
-    
     dispatch(removeItem({ id: item?.card?.info?.id }));
+  };
+
+  const handleRemoveEntireItem = (item) => {
+    dispatch(removeEntireItem({ id: item?.card?.info?.id }));
   };
 
   if (cartItems.length === 0) return <EmptyCart />;
@@ -56,9 +69,23 @@ const Cart = () => {
                     : item?.card?.info?.defaultPrice / 100}
                 </h1>
                 <div className="flex justify-between items-center pt-2">
-                  <span>Counter</span>
+                  <span>
+                    <button
+                      onClick={() => handleRemoveItem(item)}
+                      className="border px-4 py-1 rounded  "
+                    >
+                      -
+                    </button>
+                    <span className="mx-3 font-semibold">{item.count}</span>
+                    <button
+                      onClick={() => handleAddItem(item)}
+                      className="border px-4 py-1 rounded "
+                    >
+                      +
+                    </button>
+                  </span>
                   <button
-                    onClick={() => handleRemoveItem(item)}
+                    onClick={() => handleRemoveEntireItem(item)}
                     className="border hover:bg-red-700 hover:text-white px-4 py-2 rounded-lg text-sm border-orange-600 text-orange-600"
                   >
                     Remove
@@ -69,14 +96,26 @@ const Cart = () => {
           ))}
         </div>
 
-        <div className="right border-2 w-4/12 h-[50vh] flex flex-col p-9 shadow-lg">
+        <div className="right border-2 w-4/12 h-[50vh] flex flex-col justify-between p-9 shadow-lg">
           <h1 className="text-2xl font-semibold ">Order Summary</h1>
-          <div>Price</div>
-          <div>Discount</div>
-          <div>Delivery Charges</div>
-          <div>You will save </div>
-          <div>Total Amount</div>
-          <button>Place Order</button>
+          <div className="flex justify-between">
+            <span>Price(26 items)</span>
+            <span>Rs-25844</span>
+          </div >
+          <div className="flex justify-between">
+            <span>Discount(10%)</span>
+            <span>Rs-2584.4</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Delivery Charges</span>
+            <span>Rs-80</span>
+          </div>
+          <div>You will save (2584.4) on this Order 🎉 </div>
+          <div className="flex justify-between">
+            <span>Total Amount</span>
+            <span>Rs-26400</span>
+          </div>
+          <button className="px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl">PLACE ORDER</button>
         </div>
       </div>
     </div>

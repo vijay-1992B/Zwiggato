@@ -7,18 +7,53 @@ const cartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      state.items.push(action.payload);
+      const item = action.payload;
+      const existingItem = state.items.find(
+        (i) => i.card.info.id === item.card.info.id
+      );
+
+      if (existingItem) {
+        existingItem.count += 1; // Increment count if item already exists
+      } else {
+        state.items.push({ ...item, count: 1 }); // Add new item with count 1
+      }
     },
     removeItem: (state, action) => {
-      // Filter out the item with the given id
-      state.items = state.items.filter(item => item.card.info.id !== action.payload.id);
+      const itemId = action.payload.id;
+      console.log(itemId);
+      const existingItem = state.items.find(
+        (item) => item.card.info.id === itemId
+      );
+      console.log(existingItem);
+
+      if (existingItem) {
+        if (existingItem.count > 1) {
+          existingItem.count -= 1; // Decrement count if more than 1
+        } else {
+          // state.items = state.items.filter(
+          //   (item) => item.card.info.id !== itemId
+          // ); // Remove item if count is 1
+
+
+          
+        }
+      }
     },
+
+    removeEntireItem: (state, action) => {
+      // Filter out the item with the given id
+      state.items = state.items.filter(
+        (item) => item.card.info.id !== action.payload.id
+      );
+    },
+
     clearCart: (state) => {
       state.items.length = 0;
     },
   },
 });
 
-export const { addItem, removeItem, clearCart } = cartSlice.actions;
+export const { addItem, removeItem, removeEntireItem, clearCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
