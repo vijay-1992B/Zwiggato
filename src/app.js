@@ -15,12 +15,16 @@ import ResMenu from "./components/ResMenu";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Cart = lazy(() => import("./components/Cart"));
 
 const App = function () {
   return (
     <>
       <Provider store={store}>
+        <ToastContainer />
         <Header />
         <Outlet />
         <Footer />
@@ -74,4 +78,4 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={ router} />);
+root.render(<RouterProvider router={router} />);

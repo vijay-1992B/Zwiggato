@@ -3,27 +3,23 @@ import { CDN_URL, NO_IMAGE_URL } from "../utils/constants";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem, removeItem, clearCart } from "../utils/slices/cartSlice";
-import { Slide, ToastContainer, toast } from "react-toastify";
-
-import "react-toastify/dist/ReactToastify.css";
+import { Slide, toast } from "react-toastify";
 
 const NestedCategoriesItems = ({ data, item }) => {
   const [showNestedItems, setNestedShowItems] = useState(false);
 
-  
+  const notify = () =>
+    toast.success("Item added to cart", {
+      position: "bottom-center",
+      autoClose: 300,
+      hideProgressBar: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "dark",
+      transition: Slide,
+    });
 
-  // const notify = () =>
-  //   toast.success("Item added to cart", {
-  //     position: "bottom-center",
-  //     autoClose: 200,
-  //     hideProgressBar: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     theme: "dark",
-  //     transition: Slide,
-  //   });
-
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -126,23 +122,18 @@ const NestedCategoriesItems = ({ data, item }) => {
                     : NO_IMAGE_URL
                 }
               />
-              {/* <div className="w-full" onClick={notify}> */}
-                <button
-                  onClick={() => dispatch(addItem(item))}
-                  className="border border-gray items-center my-1 w-full rounded-lg px-2 py-1 text-lg font-extrabold text-green-600 hover:bg-gray-200"
-                >
-                  ADD
-                </button>
-              </div>
+
+              <button
+                onClick={() => dispatch(addItem(item)) && notify()}
+                className="border border-gray items-center my-1 w-full rounded-lg px-2 py-1 text-lg font-extrabold text-green-600 hover:bg-gray-200"
+              >
+                ADD
+              </button>
             </div>
-          
-          // </div>
+          </div>
         ))}
-      
     </div>
-    
   );
-  // <ToastContainer />
 };
 
 export default NestedCategoriesItems;

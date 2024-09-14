@@ -8,6 +8,7 @@ import Offline from "./Offline";
 import RestaurantCategory from "./RestaurantCategory";
 import RestaurantNestedCategory from "./RestaurantNestedCategory";
 
+
 const ResMenu = () => {
   const status = useOnlineStatus();
   const { resId } = useParams();
@@ -105,6 +106,8 @@ const ResMenu = () => {
 
         
       </div>
+      
+
     </div>
   );
 };
