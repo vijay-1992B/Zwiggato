@@ -12,11 +12,13 @@ import { useState } from "react";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems)
   
 
   const t = cartItems.map((i) =>
     Math.round(
-      ((i?.card?.info ? i?.card?.info?.price : i?.card?.info?.defaultPrice * i?.count) /
+      ((i?.card?.info.price ? i?.card?.info?.price : i?.card?.info?.defaultPrice
+        * i?.count) /
         100) *
         i.count
     )
