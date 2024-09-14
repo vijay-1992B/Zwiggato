@@ -21,6 +21,10 @@ const RestaurantList = () => {
 
   const [womData, setWomData] = useState([]);
 
+  const [isFirstBtnActive, setIsFirstBtnActive] = useState(false);
+  const [isSecondBtnActive, setIsSecondBtnActive] = useState(false);
+  const [isThirdBtnActive, setIsThirdBtnActive] = useState(false);
+
   const fetchData = async () => {
     const raw = await fetch(RESTAURANT_LIST_API);
     const data = await raw.json();
@@ -90,20 +94,27 @@ const RestaurantList = () => {
           </div>
 
           <button
-            className="p-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-[80px] h-[40px] items-center border border-black rounded-[20px]"
+            className={` ${
+              isFirstBtnActive ? "bg-[#D42420] text-white" : "bg-white"
+            } p-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-[80px] h-[40px] items-center border border-black rounded-[20px]`}
             onClick={() => {
               setFilteredRestaurants(listofRestaurants);
+              setIsFirstBtnActive(!isFirstBtnActive);
             }}
           >
             All
           </button>
 
           <button
-            className=" p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
+            className={` ${
+              isSecondBtnActive ? "bg-[#D42420] text-white" : "bg-white"
+            } p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]`}
             onClick={() => {
               const aboveFourPointFiveList = listofRestaurants.filter(
                 (restaurants) => restaurants.info.avgRating >= 4.5
               );
+              setIsSecondBtnActive(!isSecondBtnActive);
+              setIsThirdBtnActive(false);
 
               setFilteredRestaurants(aboveFourPointFiveList);
               console.log(aboveFourPointFiveList);
@@ -113,11 +124,15 @@ const RestaurantList = () => {
           </button>
 
           <button
-            className="p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]"
+            className={` p-2 ${
+              isThirdBtnActive ? "bg-[#D42420] text-white" : "bg-white"
+            } font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]`}
             onClick={() => {
               const aboveFourList = listofRestaurants.filter(
                 (restaurants) => restaurants.info.avgRating > 4.0
               );
+              setIsThirdBtnActive(!isThirdBtnActive);
+              setIsSecondBtnActive(false);
 
               setFilteredRestaurants(aboveFourList);
               console.log(aboveFourList);
