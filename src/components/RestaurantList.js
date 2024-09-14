@@ -95,7 +95,7 @@ const RestaurantList = () => {
 
           <button
             className={` ${
-              isFirstBtnActive ? "bg-[#D42420] text-white" : "bg-white"
+              isFirstBtnActive ? "bg-[#b6b6b6]" : "bg-white"
             } p-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-[80px] h-[40px] items-center border border-black rounded-[20px]`}
             onClick={() => {
               setFilteredRestaurants(listofRestaurants);
@@ -107,7 +107,7 @@ const RestaurantList = () => {
 
           <button
             className={` ${
-              isSecondBtnActive ? "bg-[#D42420] text-white" : "bg-white"
+              isSecondBtnActive ? "bg-[#b6b6b6] " : "bg-white"
             } p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]`}
             onClick={() => {
               const aboveFourPointFiveList = listofRestaurants.filter(
@@ -125,7 +125,7 @@ const RestaurantList = () => {
 
           <button
             className={` p-2 ${
-              isThirdBtnActive ? "bg-[#D42420] text-white" : "bg-white"
+              isThirdBtnActive ? "bg-[#b6b6b6]" : "bg-white"
             } font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]`}
             onClick={() => {
               const aboveFourList = listofRestaurants.filter(
