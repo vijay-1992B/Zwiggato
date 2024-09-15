@@ -26,7 +26,13 @@ const RestaurantList = () => {
   const [isThirdBtnActive, setIsThirdBtnActive] = useState(false);
 
   const fetchData = async () => {
-    const raw = await fetch('/api/proxy?url=' + RESTAURANT_LIST_API);
+    const raw = await fetch('/api/proxy?url=' + RESTAURANT_LIST_API ,{
+      method: 'GET',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+      },
+    });
     const data = await raw.json();
 
     setListofRestaurants(
