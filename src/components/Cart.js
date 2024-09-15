@@ -46,13 +46,13 @@ const Cart = () => {
   if (cartItems.length === 0) return <EmptyCart />;
 
   return (
-    <div className="min-h-[60vh]  flex justify-center items-center mt-24 ">
-      <div className="container flex justify-center items-center gap-8 ">
-        <div className="left w-5/12 max-h-[70vh] overflow-auto scroll min-h-[50vh] ">
-          <div className="flex justify-between">
-            <h1 className="  text-2xl font-semibold ">Cart</h1>
+    <div className="flex justify-center items-center mt-24 ">
+      <div className="container flex justify-center items-center gap-16 ">
+        <div className=" cartValue left w-5/12 max-h-[70vh] overflow-auto  h-[65vh]  ">
+          <div className="flex justify-between items-center ">
+            <h1 className="  text-2xl font-bold ">Cart</h1>
             <btn
-              className="border bg-red-700 text-white px-4 py-1 rounded-lg text-sm border-red-700 mr-6 cursor-pointer"
+              className="border bg-red-700 text-white px-5 py-2 rounded-lg text-sm border-red-700 mr-6 cursor-pointer"
               onClick={() => dispatch(clearCart())}
             >
               Clear Cart
@@ -127,7 +127,7 @@ const Cart = () => {
           ))}
         </div>
 
-        <div className="right border-2 w-4/12 h-[50vh] flex flex-col justify-between p-9 shadow-lg">
+        <div className="right border-2 w-4/12 h-[65vh] flex flex-col justify-between p-9 shadow-lg">
           <h1 className="text-2xl font-semibold ">Order Summary</h1>
           <div className="flex justify-between border-t-2 py-4">
             <span>Price({cartItems.length} items)</span>
@@ -156,7 +156,7 @@ const Cart = () => {
               ₹{Math.round(total - (total * 0.10) + (total * 0.05))}
             </span>
           </div>
-          <button className="px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl">
+          <button  className="px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl">
             PLACE ORDER
           </button>
         </div>

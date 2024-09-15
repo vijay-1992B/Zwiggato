@@ -24,7 +24,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #A8A8A8;
+  background-color: #a8a8a8;
   border-radius: 10px;
 }
 
@@ -32,3 +32,6 @@ body {
   background-color: #d82224; /* Color when hovering over the scrollbar */
 }
 
+.cartValue::-webkit-scrollbar {
+  display: none;
+}
