@@ -26,7 +26,22 @@ const RestaurantList = () => {
   const [isThirdBtnActive, setIsThirdBtnActive] = useState(false);
 
   const fetchData = async () => {
-    const raw = await fetch("/api/proxy?url="+RESTAURANT_LIST_API);
+    const raw = await fetch("/api/proxy?url="+RESTAURANT_LIST_API , {
+      method: 'GET',
+      headers: {
+        'If-Modified-Since': new Date().toUTCString(), // Send the last modified time
+      },
+    })
+      .then((response) => {
+        if (response.status === 304) {
+          console.log('Data not modified, using cache');
+          return; // Handle cached data in your state
+        } else if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Error fetching data');
+        }
+      });
     const data = await raw.json();
 
     setListofRestaurants(
