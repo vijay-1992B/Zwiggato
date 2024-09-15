@@ -72,7 +72,23 @@ const Cart = () => {
                 />
               </div>
               <div className="w-full">
+                <div>
+                <h1>
+                    {item.card.info.itemAttribute.vegClassifier == "VEG" ? (
+                      <img
+                        className="size-5"
+                        src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg"
+                      />
+                    ) : (
+                      <img
+                        className="size-5"
+                        src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg"
+                      />
+                    )}
+                  </h1>
                 <h1 className="font-bold ">{item.card.info.name}</h1>
+                
+                </div>
                 <h1 className="py-2 font-normal">
                   {item.card.info.description.split(" ").slice(0, 8).join(" ")}
                   ...
@@ -142,7 +158,7 @@ const Cart = () => {
           <div className="flex justify-between">
             <span>Delivery Charges</span>
             <span className="font-semibold text-lg">
-              ₹{Math.round(total * 0.05)}
+              ₹49
             </span>
           </div>
           <div>
@@ -153,7 +169,7 @@ const Cart = () => {
           <div className="flex justify-between border-y-2 py-4">
             <span className="text-2xl font-semibold">Total Amount</span>
             <span className="font-bold text-lg">
-              ₹{Math.round(total - (total * 0.10) + (total * 0.05))}
+              ₹{Math.round(total - (total * 0.10) + 49)}
             </span>
           </div>
           <button  className="px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl">

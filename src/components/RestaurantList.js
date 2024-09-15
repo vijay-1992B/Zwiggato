@@ -26,13 +26,7 @@ const RestaurantList = () => {
   const [isThirdBtnActive, setIsThirdBtnActive] = useState(false);
 
   const fetchData = async () => {
-    const raw = await fetch('/api/proxy?url=' + RESTAURANT_LIST_API ,{
-      method: 'GET',
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache',
-      },
-    });
+    const raw = await fetch(RESTAURANT_LIST_API);
     const data = await raw.json();
 
     setListofRestaurants(
@@ -76,7 +70,7 @@ const RestaurantList = () => {
   const status = useOnlineStatus();
 
   if (status === false) return <Offline />;
-
+ 
   return listofRestaurants.length == 0 ? (
     <ShimmerofResCard />
   ) : (
