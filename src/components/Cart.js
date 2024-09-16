@@ -9,16 +9,18 @@ import {
 } from "../utils/slices/cartSlice";
 import EmptyCart from "./EmptyCart";
 import { useState } from "react";
+import OrderPlaced from "./OrderPlaced";
 
 const Cart = () => {
+  const [OrderPlacedStatus, setOrderPlacedStatus] = useState(false);
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems)
-  
+  console.log(cartItems);
 
   const t = cartItems.map((i) =>
     Math.round(
-      ((i?.card?.info.price ? i?.card?.info?.price : i?.card?.info?.defaultPrice
-        * i?.count) /
+      ((i?.card?.info.price
+        ? i?.card?.info?.price
+        : i?.card?.info?.defaultPrice * i?.count) /
         100) *
         i.count
     )
@@ -43,7 +45,9 @@ const Cart = () => {
     dispatch(removeEntireItem({ id: item?.card?.info?.id }));
   };
 
+  if (OrderPlacedStatus === true) return <OrderPlaced />;
   if (cartItems.length === 0) return <EmptyCart />;
+
 
   return (
     <div className="flex justify-center items-center mt-24 ">
@@ -73,7 +77,7 @@ const Cart = () => {
               </div>
               <div className="w-full">
                 <div>
-                <h1>
+                  <h1>
                     {item.card.info.itemAttribute.vegClassifier == "VEG" ? (
                       <img
                         className="size-5"
@@ -86,8 +90,7 @@ const Cart = () => {
                       />
                     )}
                   </h1>
-                <h1 className="font-bold ">{item.card.info.name}</h1>
-                
+                  <h1 className="font-bold ">{item.card.info.name}</h1>
                 </div>
                 <h1 className="py-2 font-normal">
                   {item.card.info.description.split(" ").slice(0, 8).join(" ")}
@@ -157,9 +160,7 @@ const Cart = () => {
           </div>
           <div className="flex justify-between">
             <span>Delivery Charges</span>
-            <span className="font-semibold text-lg">
-              ₹49
-            </span>
+            <span className="font-semibold text-lg">₹49</span>
           </div>
           <div>
             You will save{" "}
@@ -169,10 +170,17 @@ const Cart = () => {
           <div className="flex justify-between border-y-2 py-4">
             <span className="text-2xl font-semibold">Total Amount</span>
             <span className="font-bold text-lg">
-              ₹{Math.round(total - (total * 0.10) + 49 )}
+              ₹{Math.round(total - total * 0.1 + 49)}
             </span>
           </div>
-          <button  className="px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl">
+          <button
+            onClick={() => {
+              
+              setOrderPlacedStatus(true);
+              dispatch(clearCart());
+            }}
+            className="px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl"
+          >
             PLACE ORDER
           </button>
         </div>
