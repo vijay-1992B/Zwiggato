@@ -169,7 +169,7 @@ const Cart = () => {
           <div className="flex justify-between border-y-2 py-4">
             <span className="text-2xl font-semibold">Total Amount</span>
             <span className="font-bold text-lg">
-              ₹{Math.round(total - (total * 0.10) + 49)}
+              ₹{Math.round(total - (total * 0.10) + 49 )}
             </span>
           </div>
           <button  className="px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl">
