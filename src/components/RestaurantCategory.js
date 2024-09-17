@@ -47,7 +47,7 @@ const RestaurantCategory = ({ data }) => {
               key={item.card.info.id}
               className="flex  justify-between py-10 px-2  border-b-2"
             >
-              <div className="w-9/12">
+              <div className="w-8/12">
                 <div className="flex gap-2 items-end">
                   <h1>
                     {item.card.info.itemAttribute.vegClassifier == "VEG" ? (

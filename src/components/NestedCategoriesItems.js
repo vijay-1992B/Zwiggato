@@ -109,7 +109,7 @@ const NestedCategoriesItems = ({ data, item }) => {
                 </span>
               </div>
 
-              <p className="text-sm font-medium">
+              <p className="text-sm font-medium w-full">
                 {item.card.info.description}
               </p>
             </div>

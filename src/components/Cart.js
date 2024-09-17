@@ -67,7 +67,7 @@ const Cart = () => {
             <div className="flex my-10 py-4 pr-8  ">
               <div className=" ">
                 <img
-                  className="bg-cover w-36 h-32 rounded-[6%] object-cover   pr-4 "
+                  className="bg-cover w-56 h-full rounded-[6%] object-cover  pr-4 "
                   src={
                     item.card.info.imageId
                       ? CDN_URL + item.card.info.imageId
@@ -93,7 +93,7 @@ const Cart = () => {
                   <h1 className="font-bold ">{item.card.info.name}</h1>
                 </div>
                 <h1 className="py-2 font-normal">
-                  {item.card.info.description.split(" ").slice(0, 8).join(" ")}
+                  {item.card?.info?.description?.split(" ").slice(0, 8).join(" ")}
                   ...
                 </h1>
                 <div className="flex gap-1">
