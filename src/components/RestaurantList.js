@@ -47,13 +47,10 @@ const RestaurantList = () => {
   };
 
   const fetchData = async () => {
-    const raw = await fetch(RESTAURANT_LIST_API + `lat=${lat}&lng=${lng}`, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
-      },
-    });
+    const raw = await fetch(`https://my-backend-server-delta.vercel.app/api/restaurants?lat=${lat}&lng=${lng}`);
 
     const data = await raw.json();
+    console.log(data)
 
     setListofRestaurants(
       data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -97,7 +94,7 @@ const RestaurantList = () => {
   const status = useOnlineStatus();
 
   if (status === false) return <Offline />;
-  console.log(allData);
+  
 
   return listofRestaurants.length === 0 ? (
     <ShimmerofResCard />
@@ -125,9 +122,9 @@ const RestaurantList = () => {
         </button>
         <button
           className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
-          onClick={() => setLat(22.7196) || setLng(75.8577)}
+          onClick={() => setLat(28.4595) || setLng(77.0266)}
         >
-          Indore
+          Gurgaon
         </button>
       </div>
 
