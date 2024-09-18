@@ -7,8 +7,8 @@ import "slick-carousel/slick/slick-theme.css";
 import ResCard from "./ResCard";
 import { CDN_URL } from "../utils/constants";
 
-const TopBrands = ({ data }) => {
-  console.log(data);
+const TopBrands = ({ data , dataT }) => {
+  console.log(data , dataT);
   const settings = {
     dots: true,
     bool: false,
@@ -21,7 +21,7 @@ const TopBrands = ({ data }) => {
   return (
     <div className="slider-container border-gray-100 border-b-2  pb-10 ">
       <h1 className="text-2xl font-extrabold pt-5 pb-8 ">
-        Top restaurant chains 
+        {dataT.cards[1].card.card.header.title}
       </h1>
       <Slider {...settings}>
         {data.map((item) => (

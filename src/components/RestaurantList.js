@@ -12,7 +12,6 @@ import Offline from "./Offline";
 import TopBrands from "./TopBrands";
 import ItemNotFound from "./ItemNotFound";
 
-
 const RestaurantList = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -48,13 +47,18 @@ const RestaurantList = () => {
   };
 
   const fetchData = async () => {
-    const raw = await fetch(RESTAURANT_LIST_API + `lat=${lat}&lng=${lng}`);
+    const raw = await fetch(RESTAURANT_LIST_API + `lat=${lat}&lng=${lng}`, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+      },
+    });
 
     const data = await raw.json();
 
     setListofRestaurants(
       data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+
     setFilteredRestaurants(
       data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -93,6 +97,7 @@ const RestaurantList = () => {
   const status = useOnlineStatus();
 
   if (status === false) return <Offline />;
+  console.log(allData);
 
   return listofRestaurants.length === 0 ? (
     <ShimmerofResCard />
@@ -104,6 +109,13 @@ const RestaurantList = () => {
           onClick={() => getUserCoordinates()}
         >
           <i class="ri-map-pin-line mr-1"></i> Your Location
+        </button>
+
+        <button
+          className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
+          onClick={() => setLat(19.076) || setLng(72.8777)}
+        >
+          Mumbai
         </button>
         <button
           className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
@@ -117,17 +129,10 @@ const RestaurantList = () => {
         >
           Indore
         </button>
-
-        <button
-          className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
-          onClick={() => setLat(19.076) || setLng(72.8777)}
-        >
-          Mumbai
-        </button>
       </div>
 
       <WhatsOnYourMind data={womData} />
-      <TopBrands data={topBrands} />
+      <TopBrands data={topBrands} dataT={allData} />
 
       <div className=" min-h-[90vh] ">
         <h3 className=" text-2xl mt-10  font-extrabold  ">
