@@ -21,7 +21,7 @@ const TopBrands = ({ data }) => {
   return (
     <div className="slider-container border-gray-100 border-b-2  pb-10 ">
       <h1 className="text-2xl font-extrabold pt-5 pb-8 ">
-        Top restaurant chains in Delhi
+        Top restaurant chains 
       </h1>
       <Slider {...settings}>
         {data.map((item) => (

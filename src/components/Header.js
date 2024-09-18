@@ -1,20 +1,28 @@
 import { useSelector } from "react-redux";
 import logo from "../../logo.jpg";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 // import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 
-const Header = () => {
+const Header = (props) => {
+  console.log(props);
+  
   const cartItems = useSelector((store) => store.cart.items);
+  
 
 
   // const status = useOnlineStatus()
 
+ 
   return (
     <div className="flex justify-around items-center py-4  mb-5  bg-white shadow-md sticky top-0 z-50 ">
+    
       <div className="left-header flex gap-6 items-center">
         <Link to={"/"}>
           <img src={logo} className="w-44 mix-blend-multiply"></img>
         </Link>
+       
+       
       </div>
 
       <div className="right-header flex gap-8 text-lg">

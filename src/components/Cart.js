@@ -93,8 +93,8 @@ const Cart = () => {
                   <h1 className="font-bold ">{item.card.info.name}</h1>
                 </div>
                 <h1 className="py-2 font-normal">
-                  {item.card?.info?.description?.split(" ").slice(0, 8).join(" ")}
-                  ...
+                  {item.card?.info.description ? item.card?.info?.description?.split(" ").slice(0, 8).join(" ") + "...."  : null}
+                  
                 </h1>
                 <div className="flex gap-1">
                   <span className="font-semibold ">

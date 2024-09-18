@@ -12,6 +12,7 @@ import Offline from "./Offline";
 import TopBrands from "./TopBrands";
 import ItemNotFound from "./ItemNotFound";
 
+
 const RestaurantList = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -25,8 +26,30 @@ const RestaurantList = () => {
   const [isSecondBtnActive, setIsSecondBtnActive] = useState(false);
   const [isThirdBtnActive, setIsThirdBtnActive] = useState(false);
 
+  const [lat, setLat] = useState(28.7041);
+  const [lng, setLng] = useState(77.1025);
+
+  const geolocationAPI = navigator.geolocation;
+  const getUserCoordinates = () => {
+    if (!geolocationAPI) {
+      console.log("Geolocation API is not available in your browser!");
+    } else {
+      geolocationAPI.getCurrentPosition(
+        (position) => {
+          const { coords } = position;
+          setLat(coords.latitude);
+          setLng(coords.longitude);
+        },
+        (error) => {
+          console.log("Something went wrong getting your position!");
+        }
+      );
+    }
+  };
+
   const fetchData = async () => {
-    const raw = await fetch(RESTAURANT_LIST_API);
+    const raw = await fetch(RESTAURANT_LIST_API + `lat=${lat}&lng=${lng}`);
+
     const data = await raw.json();
 
     setListofRestaurants(
@@ -49,7 +72,7 @@ const RestaurantList = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [lat, lng]);
 
   useEffect(() => {
     const filteredList = listofRestaurants.filter(
@@ -70,13 +93,42 @@ const RestaurantList = () => {
   const status = useOnlineStatus();
 
   if (status === false) return <Offline />;
- 
-  return listofRestaurants.length == 0 ? (
+
+  return listofRestaurants.length === 0 ? (
     <ShimmerofResCard />
   ) : (
     <div className="pl-[200px] pr-[100px]">
+      <div className="location flex gap-2 my-5 items-center justify-start">
+        <button
+          className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white "
+          onClick={() => getUserCoordinates()}
+        >
+          <i class="ri-map-pin-line mr-1"></i> Your Location
+        </button>
+        <button
+          className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
+          onClick={() => setLat(12.9715987) || setLng(77.5945627)}
+        >
+          Bangalore
+        </button>
+        <button
+          className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
+          onClick={() => setLat(22.7196) || setLng(75.8577)}
+        >
+          Indore
+        </button>
+
+        <button
+          className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
+          onClick={() => setLat(19.076) || setLng(72.8777)}
+        >
+          Mumbai
+        </button>
+      </div>
+
       <WhatsOnYourMind data={womData} />
       <TopBrands data={topBrands} />
+
       <div className=" min-h-[90vh] ">
         <h3 className=" text-2xl mt-10  font-extrabold  ">
           {allData?.cards[2]?.card?.card?.title}
@@ -96,7 +148,7 @@ const RestaurantList = () => {
           <button
             className={` ${
               isFirstBtnActive ? "bg-[#b6b6b6]" : "bg-white"
-            } p-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-[80px] h-[40px] items-center border border-black rounded-[20px]`}
+            } p-2 hover:bg-[#b6b6b6] font-bold text-[14px] text-[#02060c] opacity-[70%] w-[80px] h-[40px] items-center border border-black rounded-[20px]`}
             onClick={() => {
               setFilteredRestaurants(listofRestaurants);
               setIsFirstBtnActive(!isFirstBtnActive);
@@ -108,7 +160,7 @@ const RestaurantList = () => {
           <button
             className={` ${
               isSecondBtnActive ? "bg-[#b6b6b6] " : "bg-white"
-            } p-2  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]`}
+            } p-2 hover:bg-[#b6b6b6]  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]`}
             onClick={() => {
               const aboveFourPointFiveList = listofRestaurants.filter(
                 (restaurants) => restaurants.info.avgRating >= 4.5
@@ -126,7 +178,7 @@ const RestaurantList = () => {
           <button
             className={` p-2 ${
               isThirdBtnActive ? "bg-[#b6b6b6]" : "bg-white"
-            } font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]`}
+            } font-bold text-[14px] hover:bg-[#b6b6b6] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]`}
             onClick={() => {
               const aboveFourList = listofRestaurants.filter(
                 (restaurants) => restaurants.info.avgRating > 4.0
