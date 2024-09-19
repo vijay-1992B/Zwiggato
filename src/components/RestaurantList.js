@@ -47,10 +47,12 @@ const RestaurantList = () => {
   };
 
   const fetchData = async () => {
-    const raw = await fetch(`https://my-backend-server-delta.vercel.app/api/restaurants?lat=${lat}&lng=${lng}`);
+    const raw = await fetch(
+      `https://my-backend-server-delta.vercel.app/api/restaurants?lat=${lat}&lng=${lng}`
+    );
 
     const data = await raw.json();
-    console.log(data)
+    console.log(data);
 
     setListofRestaurants(
       data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -94,53 +96,61 @@ const RestaurantList = () => {
   const status = useOnlineStatus();
 
   if (status === false) return <Offline />;
-  
 
   return listofRestaurants.length === 0 ? (
     <ShimmerofResCard />
   ) : (
-    <div className="pl-[200px] pr-[100px]">
-      <div className="location flex gap-2 my-5 items-center justify-start">
-        <button
-          className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white "
-          onClick={() => getUserCoordinates()}
-        >
-          <i class="ri-map-pin-line mr-1"></i> Your Location
-        </button>
+    <div className="main-container   sm:px-8 xl:pl-[200px] xl:pr-[100px] p-4 overflow-hidden">
+      <div className="location-container ">
+        <div className="location flex flex-wrap gap-2 sm:gap-2 mb-6 mt-3 md:my-3 items-center justify-start">
+          <button
+            className="sm:px-4 sm:py-2  p-2 border-2 rounded-md hover:bg-gray-400 hover:text-white "
+            onClick={() => getUserCoordinates()}
+          >
+            <i class="ri-map-pin-line mr-1"></i>Your Location
+          </button>
 
-        <button
-          className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
-          onClick={() => setLat(19.076) || setLng(72.8777)}
-        >
-          Mumbai
-        </button>
-        <button
-          className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
-          onClick={() => setLat(12.9715987) || setLng(77.5945627)}
-        >
-          Bangalore
-        </button>
-        <button
-          className="px-4 py-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
-          onClick={() => setLat(28.4595) || setLng(77.0266)}
-        >
-          Gurgaon
-        </button>
+          <button
+            className="sm:px-4 sm:py-2 p-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
+            onClick={() => setLat(19.076) || setLng(72.8777)}
+          >
+            Mumbai
+          </button>
+          <button
+            className="sm:px-4 sm:py-2 p-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
+            onClick={() => setLat(12.9715987) || setLng(77.5945627)}
+          >
+            Bangalore
+          </button>
+          <button
+            className="sm:px-4 sm:py-2 p-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
+            onClick={() => setLat(28.4595) || setLng(77.0266)}
+          >
+            Gurgaon
+          </button>
+        </div>
       </div>
 
-      <WhatsOnYourMind data={womData} />
-      <TopBrands data={topBrands} dataT={allData} />
+      <div className="whatsMind-container ">
+        <WhatsOnYourMind data={womData} />
+      </div>
 
-      <div className=" min-h-[90vh] ">
-        <h3 className=" text-2xl mt-10  font-extrabold  ">
-          {allData?.cards[2]?.card?.card?.title}
-        </h3>
+      <div className="topBrand-conatiner ">
+        <TopBrands data={topBrands} dataT={allData} />
+      </div>
 
-        <div className="filterIcons flex gap-3 mt-5 mb-10 items-center ">
-          <div className="searchBar">
+      <div className=" restaurantList-container   ">
+        <div className="heading ">
+          <h3 className=" text-2xl mt-10  font-extrabold  ">
+            {allData?.cards[2]?.card?.card?.title}
+          </h3>
+        </div>
+
+        <div className="filterIcons flex flex-wrap gap-2 lg:gap-3 mt-5 mb-10 items-center  ">
+          <div className="searchBar w-screen md:w-auto">
             <input
               placeholder="Restaurants/ Cuisines"
-              className="p-5 mr-2 font-bold text-[14px] text-[#02060c] opacity-[70%] w-auto h-[40px] items-center border border-black rounded-[20px]"
+              className="p-3 md:p-5 mr-2 font-bold text-xs md:text-[14px] text-[#02060c] opacity-[70%] w-full md:w-auto h-[40px] items-center border border-black rounded-lg"
               type="text"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
@@ -150,7 +160,7 @@ const RestaurantList = () => {
           <button
             className={` ${
               isFirstBtnActive ? "bg-[#b6b6b6]" : "bg-white"
-            } p-2 hover:bg-[#b6b6b6] font-bold text-[14px] text-[#02060c] opacity-[70%] w-[80px] h-[40px] items-center border border-black rounded-[20px]`}
+            } p-2 hover:bg-[#b6b6b6] font-bold text-[14px] text-[#02060c] opacity-[70%] w-[50px] md:w-[80px] h-[40px] items-center border border-black rounded-lg`}
             onClick={() => {
               setFilteredRestaurants(listofRestaurants);
               setIsFirstBtnActive(!isFirstBtnActive);
@@ -162,7 +172,7 @@ const RestaurantList = () => {
           <button
             className={` ${
               isSecondBtnActive ? "bg-[#b6b6b6] " : "bg-white"
-            } p-2 hover:bg-[#b6b6b6]  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]`}
+            } p-2 hover:bg-[#b6b6b6]  font-bold text-[14px] text-[#02060c] opacity-[70%] w-[110px] lg:w-[130px] h-[40px] items-center border border-black rounded-lg`}
             onClick={() => {
               const aboveFourPointFiveList = listofRestaurants.filter(
                 (restaurants) => restaurants.info.avgRating >= 4.5
@@ -180,7 +190,7 @@ const RestaurantList = () => {
           <button
             className={` p-2 ${
               isThirdBtnActive ? "bg-[#b6b6b6]" : "bg-white"
-            } font-bold text-[14px] hover:bg-[#b6b6b6] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-[20px]`}
+            } font-bold text-[14px] hover:bg-[#b6b6b6] text-[#02060c] opacity-[70%] w-[130px] h-[40px] items-center border border-black rounded-lg`}
             onClick={() => {
               const aboveFourList = listofRestaurants.filter(
                 (restaurants) => restaurants.info.avgRating > 4.0
@@ -195,24 +205,24 @@ const RestaurantList = () => {
             Rating 4.0+
           </button>
         </div>
-
-        <div className="flex flex-wrap gap-16 ">
-          {filteredRestaurants.length === 0 ? (
-            <ItemNotFound />
-          ) : (
-            filteredRestaurants.map((restaurants, index) => {
-              return (
-                <Link
-                  key={restaurants?.info?.id}
-                  to={"/restaurant/" + restaurants?.info?.id}
-                >
-                  <ResCard resData={restaurants} />
-                </Link>
-              );
-            })
-          )}
-        </div>
+      
+        <div className="resList  grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">{filteredRestaurants.length === 0 ? (
+          <ItemNotFound />
+        ) : (
+          filteredRestaurants.map((restaurants, index) => {
+            return (
+              <Link
+                key={restaurants?.info?.id}
+                to={"/restaurant/" + restaurants?.info?.id}
+              >
+                <ResCard resData={restaurants} />
+              </Link>
+            );
+          })
+        )}</div>
       </div>
+
+      
     </div>
   );
 };

@@ -7,35 +7,93 @@ import "slick-carousel/slick/slick-theme.css";
 import ResCard from "./ResCard";
 import { CDN_URL } from "../utils/constants";
 
-const TopBrands = ({ data , dataT }) => {
-  console.log(data , dataT);
-  const settings = {
-    dots: true,
-    bool: false,
+const TopBrands = ({ data, dataT }) => {
+  console.log(data, dataT);
 
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block", background: "#F97316" }}
+        onClick={onClick}
+      />
+    );
+  }
+  
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ display: "block", background: "#F97316"  }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  const settings = {
+    dots: false,
+    arrows: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+ 
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 3,
+    slidesToScroll: 1, // Adjust to scroll one slide at a time
+    responsive: [
+      {
+        breakpoint: 1024, // For large screens
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1, // Scroll one slide at a time
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 800, // For medium screens
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1, // Scroll one slide at a time
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 480, // For small screens
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1, // Scroll one slide at a time
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 280, // For extra small screens
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1, // Scroll one slide at a time
+          rows: 2, // Display items in two rows if needed
+          dots: false,
+        },
+      },
+    ],
   };
+
   return (
-    <div className="slider-container border-gray-100 border-b-2  pb-10 ">
-      <h1 className="text-2xl font-extrabold pt-5 pb-8 ">
+    <div className="slider-container border-gray-100 border-b-2 px-5 pb-3 lg:pb-10 ">
+      <h1 className="text-lg sm:text-2xl font-extrabold py-6">
         {dataT.cards[1].card.card.header.title}
       </h1>
       <Slider {...settings}>
         {data.map((item) => (
-          <>
-            <Link key={item?.info?.id} to={"/restaurant/" + item?.info?.id}>
-              {/* <img
-                className="size-40  object-center rounded-md hover:scale-105"
-                src={CDN_URL + item.info.cloudinaryImageId}
-              />
-              <h1>{item.info.name}</h1> */}
-
+          <div key={item?.info?.id}  >
+            <Link to={"/restaurant/" + item?.info?.id}>
+              <div className="mr-5">
               <ResCard resData={item} />
+              </div>
             </Link>
-          </>
+          </div>
         ))}
       </Slider>
     </div>
@@ -43,3 +101,4 @@ const TopBrands = ({ data , dataT }) => {
 };
 
 export default TopBrands;
+
