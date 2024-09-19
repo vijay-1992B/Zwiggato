@@ -17,7 +17,7 @@ const ResCard = ({ resData }) => {
   return (
    
     <div className="hover:scale-95 duration-300 ease-in-out">
-    <div className="relative w-full h-[210px]">
+    <div className="relative w-full md:h-[210px] h-[180px]">
       <img
         src={CDN_URL + cloudinaryImageId}
         alt="Example"
