@@ -35,3 +35,10 @@ body {
 .cartValue::-webkit-scrollbar {
   display: none;
 }
+
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+
+}

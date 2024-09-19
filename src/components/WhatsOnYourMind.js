@@ -11,6 +11,7 @@ function WhatsOnYourMind({ data }) {
   const settings = {
     dots: false,
     bool: true,
+    arrows: false,
 
     infinite: true,
     speed: 500,

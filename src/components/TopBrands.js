@@ -16,7 +16,7 @@ const TopBrands = ({ data, dataT }) => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", background: "#F97316" }}
+        style={{ ...style, display: "block", background: "white" }}
         onClick={onClick}
       />
     );
@@ -27,7 +27,7 @@ const TopBrands = ({ data, dataT }) => {
     return (
       <div
         className={className}
-        style={{ display: "block", background: "#F97316"  }}
+        style={{ ...style, display: "block", background: "white"  }}
         onClick={onClick}
       />
     );
@@ -36,8 +36,7 @@ const TopBrands = ({ data, dataT }) => {
   const settings = {
     dots: false,
     arrows: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+   
  
     infinite: true,
     speed: 500,
@@ -73,8 +72,9 @@ const TopBrands = ({ data, dataT }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1, // Scroll one slide at a time
-          rows: 2, // Display items in two rows if needed
+          
           dots: false,
+          
         },
       },
     ],
@@ -85,13 +85,13 @@ const TopBrands = ({ data, dataT }) => {
     <h1 className="text-lg sm:text-2xl font-extrabold py-6">
         {dataT.cards[1].card.card.header.title}
       </h1>
-    <div className="slider-container border-gray-100 border-b-2  pb-3 lg:pb-10 mx-4 sm:mx-1  ">
+    <div className="slider-container border-gray-100 border-b-2  pb-3 lg:pb-10 mx-4 sm:mx-0 ">
       
       <Slider {...settings}>
         {data.map((item) => (
           <div key={item?.info?.id} >
             <Link to={"/restaurant/" + item?.info?.id}>
-              <div className="sm:mx-8">
+              <div className="mx-4">
               <ResCard resData={item} />
               </div>
             </Link>
