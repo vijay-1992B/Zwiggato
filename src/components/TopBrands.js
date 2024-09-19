@@ -81,15 +81,17 @@ const TopBrands = ({ data, dataT }) => {
   };
 
   return (
-    <div className="slider-container border-gray-100 border-b-2 px-5 pb-3 lg:pb-10 ">
-      <h1 className="text-lg sm:text-2xl font-extrabold py-6">
+    <>
+    <h1 className="text-lg sm:text-2xl font-extrabold py-6">
         {dataT.cards[1].card.card.header.title}
       </h1>
+    <div className="slider-container border-gray-100 border-b-2  pb-3 lg:pb-10 mx-4 sm:mx-1  ">
+      
       <Slider {...settings}>
         {data.map((item) => (
-          <div key={item?.info?.id}  >
+          <div key={item?.info?.id} >
             <Link to={"/restaurant/" + item?.info?.id}>
-              <div className="mr-5">
+              <div className="sm:mx-8">
               <ResCard resData={item} />
               </div>
             </Link>
@@ -97,6 +99,7 @@ const TopBrands = ({ data, dataT }) => {
         ))}
       </Slider>
     </div>
+    </>
   );
 };
 
