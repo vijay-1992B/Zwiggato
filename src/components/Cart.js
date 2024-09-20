@@ -50,13 +50,13 @@ const Cart = () => {
 
 
   return (
-    <div className="flex justify-center items-center mt-24 ">
-      <div className="container flex justify-center items-center gap-16 ">
-        <div className=" cartValue left w-5/12 max-h-[70vh] overflow-auto  h-[65vh]  ">
-          <div className="flex justify-between items-center ">
-            <h1 className="  text-2xl font-bold ">Cart</h1>
+    <div className="flex  justify-center items-center md:mt-24 mt-10 ">
+      <div className="container flex sm:flex-row flex-col justify-center items-start sm:gap-16 px-4">
+        <div className=" cartValue left sm:w-5/12 sm:max-h-[70vh] overflow-auto   h-auto sm:h-[65vh]  ">
+          <div className="flex justify-between items-center mb-10 ">
+            <h1 className=" text-xl sm:text-2xl font-bold ">Cart</h1>
             <btn
-              className="border bg-red-700 text-white px-5 py-2 rounded-lg text-sm border-red-700 mr-6 cursor-pointer"
+              className="border bg-red-700 text-white px-3 sm:px-5 py-2 rounded-lg text-sm border-red-700 sm:mr-6 cursor-pointer"
               onClick={() => dispatch(clearCart())}
             >
               Clear Cart
@@ -64,10 +64,10 @@ const Cart = () => {
           </div>
 
           {cartItems.map((item) => (
-            <div className="flex my-10 py-4 pr-8  ">
+            <div className="flex  mb-11 sm:my-10 sm:py-4 pr-4 sm:pr-8  ">
               <div className=" ">
                 <img
-                  className="bg-cover w-56 h-full rounded-[6%] object-cover  pr-4 "
+                  className="bg-cover size-40 sm:size-44 h-full overflow-hidden rounded-lg object-center  pr-4 "
                   src={
                     item.card.info.imageId
                       ? CDN_URL + item.card.info.imageId
@@ -75,7 +75,7 @@ const Cart = () => {
                   }
                 />
               </div>
-              <div className="w-full">
+              <div className="w-full h-auto">
                 <div>
                   <h1>
                     {item.card.info.itemAttribute.vegClassifier == "VEG" ? (
@@ -92,7 +92,7 @@ const Cart = () => {
                   </h1>
                   <h1 className="font-bold ">{item.card.info.name}</h1>
                 </div>
-                <h1 className="py-2 font-normal">
+                <h1 className="py-2 text-sm font-normal">
                   {item.card?.info.description ? item.card?.info?.description?.split(" ").slice(0, 8).join(" ") + "...."  : null}
                   
                 </h1>
@@ -122,21 +122,21 @@ const Cart = () => {
                   <span>
                     <button
                       onClick={() => handleRemoveItem(item)}
-                      className="border px-4 py-1 rounded  "
+                      className="border px-2 sm:px-4 py-1 rounded  "
                     >
                       -
                     </button>
-                    <span className="mx-3 font-semibold">{item.count}</span>
+                    <span className="sm:mx-3 mx-2 font-semibold">{item.count}</span>
                     <button
                       onClick={() => handleAddItem(item)}
-                      className="border px-4 py-1 rounded "
+                      className="border px-2 sm:px-4 py-1 rounded "
                     >
                       +
                     </button>
                   </span>
                   <button
                     onClick={() => handleRemoveEntireItem(item)}
-                    className="border hover:bg-red-700 hover:text-white px-4 py-2 rounded-lg text-sm border-orange-600 text-orange-600"
+                    className="border hover:bg-red-700 hover:text-white px-2 sm:px-4  py-1 sm:py-2 rounded-lg text-sm border-orange-600 text-orange-600"
                   >
                     Remove
                   </button>
