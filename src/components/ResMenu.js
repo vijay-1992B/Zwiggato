@@ -49,13 +49,13 @@ const ResMenu = () => {
   if (status === false) return <Offline />;
 
   return (
-    <div className="  flex flex-col items-center m-auto">
-      <div className="infoCard flex justify-center mt-16 ">
-        <div className=" w-[800px] ">
+    <div className="flex flex-col items-center m-auto">
+      <div className="infoCard flex justify-center mt-8 md:mt-16 ">
+        <div className=" w-screen p-2 sm:p-4 lg:p-0 md:w-[800px] ">
           <div className="">
-            <h1 className="text-2xl font-bold bg-white items-start">{name}</h1>
+            <h1 className="text-lg sm:text-2xl pl-3 font-bold bg-white items-start">{name}</h1>
           </div>
-          <div className="mt-5 border border-white p-4 rounded-2xl shadow-2xl shadow-[#E7E7EE] ">
+          <div className="md:mt-5 border border-white p-4 rounded-2xl shadow-2xl shadow-[#E7E7EE] ">
             <div className="my-2 font-semibold ">
               <span>
                 <i className="ri-star-fill text-[#14883f] text-[15px]  align-top"></i>{" "}
@@ -66,10 +66,10 @@ const ResMenu = () => {
               </span>
               <span> {costForTwoMessage}</span>
             </div>
-            <h3 className=" text-sm my-2 text-[#FF5200] font-semibold underline">
+            <h3 className=" text-sm my-3 md:my-2 text-[#FF5200] font-semibold underline">
               {cuisines.join(", ")}
             </h3>
-            <h3 className="my-2 font-medium">
+            <h3 className=" my-4 md:my-2 font-medium">
               <i className="ri-store-2-line"></i> {"Outlet - "}
               {areaName}
             </h3>
@@ -89,8 +89,8 @@ const ResMenu = () => {
           </div>
         </div>
       </div>
-    <h1 className=" text-base mt-10 opacity-60 font-medium"><i className="ri-git-commit-line"></i>MENU<i className="ri-git-commit-line"></i></h1>
-      <div className="accordian w-[800px] mt-10">
+    <h1 className=" text-base mt-4 sm:mt-10 opacity-60 font-medium"><i className="ri-git-commit-line"></i>MENU<i className="ri-git-commit-line"></i></h1>
+      <div className="accordian w-screen px-4 lg:p-0 md:w-[800px] mt-10">
         {categories.map((c) => (
           <div key={c.card.card.title}>
             <RestaurantCategory  data={c} /> 

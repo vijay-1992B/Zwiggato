@@ -27,11 +27,11 @@ const NestedCategoriesItems = ({ data, item }) => {
         onClick={() => {
           setNestedShowItems(!showNestedItems);
         }}
-        className={`flex justify-between cursor-pointer  py-3 mx-1 ${
+        className={`flex justify-between cursor-pointer  py-3  sm:mx-2 ${
           !showNestedItems ? "border-b-2" : null
         } `}
       >
-        <span className="font-bold ">
+        <span className=" font-semibold sm:font-bold ">
           {item.title}
           {"  "}({item.itemCards.length})
         </span>
@@ -45,7 +45,7 @@ const NestedCategoriesItems = ({ data, item }) => {
             key={item.card.info.name}
             className="flex  justify-between py-8 pb-12  border-b-2 mx-1"
           >
-            <div className="w-8/12">
+            <div className="w-6/12 md:w-8/12">
               <div className="flex gap-2 items-end">
                 <h1>
                   {item.card.info.itemAttribute.vegClassifier == "VEG" ? (
@@ -64,7 +64,7 @@ const NestedCategoriesItems = ({ data, item }) => {
                   {item.card.info?.isBestseller ? "Bestseller" : null}
                 </p>
               </div>
-              <h1 className="font-bold text-md  ">{item.card.info.name}</h1>
+              <h1 className="font-bold text-sm md:text-md sm:py-0 py-2 ">{item.card.info.name}</h1>
               <div className="flex items-center">
                 <h3 className="line-through font-semibold opacity-50">
                   {item.card.info.finalPrice
@@ -78,12 +78,12 @@ const NestedCategoriesItems = ({ data, item }) => {
                     : item.card.info.defaultPrice / 100}
                 </h3>
 
-                <span className="ml-2 mr-1  text-[11px] font-bold text-[#1BA672]">
+                <span className=" ml-1 sm:ml-2 mr-1 text-[8px] sm:text-[11px] font-extrabold sm:font-bold text-[#1BA672]">
                   {item.card.info.offerTags
                     ? item.card.info.offerTags[0].title
                     : null}
                 </span>
-                <span className="text-[11px] font-bold text-[#1BA672]">
+                <span className="text-[8px] sm:text-[11px] font-extrabold sm:font-bold text-[#1BA672]">
                   {item.card.info.offerTags
                     ? item.card.info.offerTags[0].subTitle
                     : null}
@@ -109,11 +109,16 @@ const NestedCategoriesItems = ({ data, item }) => {
                 </span>
               </div>
 
-              <p className="text-sm font-medium w-full">
+              <p className="hidden sm:block text-sm font-medium w-full">
                 {item.card.info.description}
               </p>
+
+              <p className=" sm:hidden  text-sm font-medium w-full">
+                {item.card.info.description?.split(" ").slice(0, 12).join(" ") + "...."}
+                  
+                </p>
             </div>
-            <div className="w-2/12 flex flex-col justify-center items-center ">
+            <div className=" w-4/12 md:w-2/12 flex flex-col justify-center items-center ">
               <img
                 className="w-44 h-32 rounded-lg bg-cover  "
                 src={

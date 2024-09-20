@@ -10,7 +10,6 @@ import { CDN_URL } from "../utils/constants";
 const TopBrands = ({ data, dataT }) => {
   console.log(data, dataT);
 
-
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -21,13 +20,13 @@ const TopBrands = ({ data, dataT }) => {
       />
     );
   }
-  
+
   function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
         className={className}
-        style={{ ...style, display: "block", background: "white"  }}
+        style={{ ...style, display: "block", background: "white" }}
         onClick={onClick}
       />
     );
@@ -36,8 +35,8 @@ const TopBrands = ({ data, dataT }) => {
   const settings = {
     dots: false,
     arrows: true,
-   
- 
+    mouseScroll: false,
+
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -72,9 +71,8 @@ const TopBrands = ({ data, dataT }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1, // Scroll one slide at a time
-          
+
           dots: false,
-          
         },
       },
     ],
@@ -82,26 +80,24 @@ const TopBrands = ({ data, dataT }) => {
 
   return (
     <>
-    <h1 className="text-lg sm:text-2xl font-extrabold py-6">
+      <h1 className="text-lg sm:text-2xl font-extrabold py-6">
         {dataT.cards[1].card.card.header.title}
       </h1>
-    <div className="slider-container border-gray-100 border-b-2  pb-3 lg:pb-10 mx-4 sm:mx-0 ">
-      
-      <Slider {...settings}>
-        {data.map((item) => (
-          <div key={item?.info?.id} >
-            <Link to={"/restaurant/" + item?.info?.id}>
-              <div className="mx-4">
-              <ResCard resData={item} />
-              </div>
-            </Link>
-          </div>
-        ))}
-      </Slider>
-    </div>
+      <div className="slider-container border-gray-100 border-b-2  pb-3 lg:pb-10 mx-4 sm:mx-0 ">
+        <Slider {...settings}>
+          {data.map((item) => (
+            <div key={item?.info?.id}>
+              <Link to={"/restaurant/" + item?.info?.id}>
+                <div className="mx-4">
+                  <ResCard resData={item} />
+                </div>
+              </Link>
+            </div>
+          ))}
+        </Slider>
+      </div>
     </>
   );
 };
 
 export default TopBrands;
-

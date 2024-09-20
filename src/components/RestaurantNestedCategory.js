@@ -10,7 +10,7 @@ const RestaurantNestedCategory = ({ data }) => {
   return (
     <div className="">
       <div className="flex justify-between border-t-[14px] ">
-        <h1  className="font-extrabold pb-4 pt-4 mx-1 ">{title} </h1>
+        <h1  className="font-bold sm:font-extrabold pb-4 pt-4 sm:mx-2 ">{title} </h1>
       </div>
       <div className="items">
         {categories.map((item) => (

@@ -33,7 +33,7 @@ const RestaurantCategory = ({ data }) => {
         }}
         className="flex justify-between items-center cursor-pointer"
       >
-        <h1 className="font-extrabold py-5 px-2 ">
+        <h1 className="font-bold sm:font-extrabold py-5 sm:mx-2  ">
           {title} ({itemCards.length})
         </h1>
         <span>
@@ -45,9 +45,9 @@ const RestaurantCategory = ({ data }) => {
           itemCards.map((item) => (
             <div
               key={item.card.info.id}
-              className="flex  justify-between py-10 px-2  border-b-2"
+              className="flex  justify-between py-6 md:py-10 px-2  border-b-2"
             >
-              <div className="w-8/12">
+              <div className="w-6/12 md:w-8/12">
                 <div className="flex gap-2 items-end">
                   <h1>
                     {item.card.info.itemAttribute.vegClassifier == "VEG" ? (
@@ -66,25 +66,25 @@ const RestaurantCategory = ({ data }) => {
                     {item.card.info?.isBestseller ? "Bestseller" : null}
                   </p>
                 </div>
-                <h1 className="font-bold text-md ">{item.card.info.name}</h1>
+                <h1 className="font-bold text-sm md:text-md sm:py-0 py-2 ">{item.card.info.name}</h1>
                 <div className="flex items-center ">
                   <h3 className="line-through font-semibold opacity-50">
                     {item.card.info.finalPrice
                       ? "₹" + item.card.info.finalPrice / 100
                       : null}
                   </h3>
-                  <h3 className="font-semibold  ">
+                  <h3 className="font-semibold ">
                     ₹
                     {item.card.info.price
                       ? item.card.info.price / 100
                       : item.card.info.defaultPrice / 100}
                   </h3>
-                  <span className="ml-2 mr-1 text-[11px] font-bold text-[#1BA672]">
+                  <span className=" ml-1 sm:ml-2 mr-1 text-[8px] sm:text-[11px] font-extrabold sm:font-bold text-[#1BA672]">
                     {item.card.info.offerTags
                       ? item.card.info.offerTags[0].title
                       : null}
                   </span>
-                  <span className="text-[11px] font-bold text-[#1BA672]">
+                  <span className="text-[8px] sm:text-[11px] font-extrabold sm:font-bold text-[#1BA672]">
                     {item.card.info.offerTags
                       ? item.card.info.offerTags[0].subTitle
                       : null}
@@ -110,11 +110,17 @@ const RestaurantCategory = ({ data }) => {
                   </span>
                 </div>
 
-                <p className="text-sm font-medium w-full">
+                <p className=" hidden sm:block text-sm font-medium w-full">
                   {item.card.info.description}
+                  
+                </p>
+
+                <p className=" sm:hidden  text-sm font-medium w-full">
+                {item.card.info.description?.split(" ").slice(0, 12).join(" ") + "...."}
+                  
                 </p>
               </div>
-              <div className="w-2/12 flex flex-col justify-center items-center">
+              <div className=" w-4/12 md:w-2/12 flex flex-col justify-center items-center">
                 <img
                   className="w-44 h-32 rounded-lg bg-cover  "
                   src={
