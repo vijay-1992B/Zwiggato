@@ -6,7 +6,7 @@ const OrderPlaced = () => {
     
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-[80vh]">
+    <div className="flex flex-col justify-center items-center h-[70vh] sm:min-h-[80vh]">
       <img className="size-20 pb-2" src="https://clipart-library.com/images/Lcd5doyqi.png" />
       <h1 className="text-xl font-semibold">Order Placed!</h1>
       <h1 className="capitalize py-3">Thank you for your order</h1>

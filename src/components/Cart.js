@@ -48,11 +48,10 @@ const Cart = () => {
   if (OrderPlacedStatus === true) return <OrderPlaced />;
   if (cartItems.length === 0) return <EmptyCart />;
 
-
   return (
     <div className="flex  justify-center items-center md:mt-24 mt-10 ">
-      <div className="container flex sm:flex-row flex-col justify-center items-start sm:gap-16 px-4">
-        <div className=" cartValue left sm:w-5/12 sm:max-h-[70vh] overflow-auto   h-auto sm:h-[65vh]  ">
+      <div className="container flex lg:flex-row flex-col justify-center items-start sm:gap-16 px-4">
+        <div className=" cartValue left lg:w-5/12 w-full sm:max-h-[70vh] overflow-auto   h-auto sm:h-[65vh]  ">
           <div className="flex justify-between items-center mb-10 ">
             <h1 className=" text-xl sm:text-2xl font-bold ">Cart</h1>
             <btn
@@ -93,8 +92,12 @@ const Cart = () => {
                   <h1 className="font-bold ">{item.card.info.name}</h1>
                 </div>
                 <h1 className="py-2 text-sm font-normal">
-                  {item.card?.info.description ? item.card?.info?.description?.split(" ").slice(0, 8).join(" ") + "...."  : null}
-                  
+                  {item.card?.info.description
+                    ? item.card?.info?.description
+                        ?.split(" ")
+                        .slice(0, 8)
+                        .join(" ") + "...."
+                    : null}
                 </h1>
                 <div className="flex gap-1">
                   <span className="font-semibold ">
@@ -126,7 +129,9 @@ const Cart = () => {
                     >
                       -
                     </button>
-                    <span className="sm:mx-3 mx-2 font-semibold">{item.count}</span>
+                    <span className="sm:mx-3 mx-2 font-semibold">
+                      {item.count}
+                    </span>
                     <button
                       onClick={() => handleAddItem(item)}
                       className="border px-2 sm:px-4 py-1 rounded "
@@ -146,7 +151,7 @@ const Cart = () => {
           ))}
         </div>
 
-        <div className="right border-2 w-4/12 h-[65vh] flex flex-col justify-between p-9 shadow-lg">
+        <div className="right border-2  lg:w-4/12 w-full flex flex-col justify-between gap-6 sm:gap-8  p-5 sm:p-9 shadow-lg">
           <h1 className="text-2xl font-semibold ">Order Summary</h1>
           <div className="flex justify-between border-t-2 py-4">
             <span>Price({cartItems.length} items)</span>
@@ -162,7 +167,7 @@ const Cart = () => {
             <span>Delivery Charges</span>
             <span className="font-semibold text-lg">₹49</span>
           </div>
-          <div>
+          <div className=" text-sm sm:text-md">
             You will save{" "}
             <span className="font-semibold">₹{Math.round(total * 0.1)}</span> on
             this Order 🎉{" "}
@@ -175,11 +180,10 @@ const Cart = () => {
           </div>
           <button
             onClick={() => {
-              
               setOrderPlacedStatus(true);
               dispatch(clearCart());
             }}
-            className="px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl"
+            className=" px-6 py-3 bg-orange-600 text-white rounded-md font-bold text-xl"
           >
             PLACE ORDER
           </button>
