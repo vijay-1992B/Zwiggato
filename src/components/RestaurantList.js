@@ -48,6 +48,7 @@ const RestaurantList = () => {
   };
 
   const handleLocationClick = (location, lat, lng) => {
+    
     setActiveLocation(location); // Set the active location
     setLat(lat); // Assuming setLat and setLng are defined in the component
     setLng(lng);
@@ -57,6 +58,7 @@ const RestaurantList = () => {
     const raw = await fetch(
       `https://my-backend-server-delta.vercel.app/api/restaurants?lat=${lat}&lng=${lng}`
     );
+    
 
     const data = await raw.json();
     console.log(data);
@@ -81,8 +83,11 @@ const RestaurantList = () => {
   };
 
   useEffect(() => {
+    
     fetchData();
   }, [lat, lng]);
+
+  
 
   useEffect(() => {
     const filteredList = listofRestaurants.filter(
@@ -115,8 +120,7 @@ const RestaurantList = () => {
               activeLocation === "Your Location" ? "bg-[#b6b6b6]" : "bg-white"
             } hover:bg-gray-400 hover:text-white`}
             onClick={() =>
-              getUserCoordinates() ||
-              setActiveLocation("Your Location")
+              getUserCoordinates() || setActiveLocation("Your Location")
             }
           >
             <i class="ri-map-pin-line mr-1"></i>Your Location
@@ -134,7 +138,9 @@ const RestaurantList = () => {
             className={`sm:px-4 sm:py-2 p-2 border-2 ${
               activeLocation === "Bangalore" ? "bg-[#b6b6b6]" : "bg-white"
             } rounded-md hover:bg-gray-400 hover:text-white`}
-            onClick={() =>  handleLocationClick("Bangalore", 12.9715987, 77.5945627)}
+            onClick={() =>
+              handleLocationClick("Bangalore", 12.9715987, 77.5945627)
+            }
           >
             Bangalore
           </button>
