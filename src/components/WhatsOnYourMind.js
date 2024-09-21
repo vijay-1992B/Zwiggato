@@ -66,7 +66,7 @@ function WhatsOnYourMind({ data }) {
           <>
             <div key={item.id}>
               <img
-                className=" size-24 h-36 lg:size-40  hover:scale-105"
+                className=" w-[124px] h-[160px] md:w-[144px] md:h-[180px]  hover:scale-105"
                 src={CDN_URL + item.imageId}
                 alt={item.description}
               />

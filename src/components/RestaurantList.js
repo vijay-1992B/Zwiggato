@@ -24,6 +24,7 @@ const RestaurantList = () => {
   const [isFirstBtnActive, setIsFirstBtnActive] = useState(false);
   const [isSecondBtnActive, setIsSecondBtnActive] = useState(false);
   const [isThirdBtnActive, setIsThirdBtnActive] = useState(false);
+  const [activeLocation, setActiveLocation] = useState("");
 
   const [lat, setLat] = useState(28.7041);
   const [lng, setLng] = useState(77.1025);
@@ -44,6 +45,12 @@ const RestaurantList = () => {
         }
       );
     }
+  };
+
+  const handleLocationClick = (location, lat, lng) => {
+    setActiveLocation(location); // Set the active location
+    setLat(lat); // Assuming setLat and setLng are defined in the component
+    setLng(lng);
   };
 
   const fetchData = async () => {
@@ -104,27 +111,38 @@ const RestaurantList = () => {
       <div className="location-container ">
         <div className="location flex flex-wrap gap-2 sm:gap-2 mb-6 mt-3 md:my-3 items-center justify-start">
           <button
-            className="sm:px-4 sm:py-2  p-2 border-2 rounded-md hover:bg-gray-400 hover:text-white "
-            onClick={() => getUserCoordinates()}
+            className={`sm:px-4 sm:py-2  p-2 border-2 rounded-md ${
+              activeLocation === "Your Location" ? "bg-[#b6b6b6]" : "bg-white"
+            } hover:bg-gray-400 hover:text-white`}
+            onClick={() =>
+              getUserCoordinates() ||
+              setActiveLocation("Your Location")
+            }
           >
             <i class="ri-map-pin-line mr-1"></i>Your Location
           </button>
 
           <button
-            className="sm:px-4 sm:py-2 p-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
-            onClick={() => setLat(19.076) || setLng(72.8777)}
+            className={`sm:px-4 sm:py-2 p-2 border-2 ${
+              activeLocation === "Mumbai" ? "bg-[#b6b6b6]" : "bg-white"
+            } rounded-md hover:bg-gray-400 hover:text-white`}
+            onClick={() => handleLocationClick("Mumbai", 19.076, 72.8777)}
           >
             Mumbai
           </button>
           <button
-            className="sm:px-4 sm:py-2 p-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
-            onClick={() => setLat(12.9715987) || setLng(77.5945627)}
+            className={`sm:px-4 sm:py-2 p-2 border-2 ${
+              activeLocation === "Bangalore" ? "bg-[#b6b6b6]" : "bg-white"
+            } rounded-md hover:bg-gray-400 hover:text-white`}
+            onClick={() =>  handleLocationClick("Bangalore", 12.9715987, 77.5945627)}
           >
             Bangalore
           </button>
           <button
-            className="sm:px-4 sm:py-2 p-2 border-2 rounded-md hover:bg-gray-400 hover:text-white"
-            onClick={() => setLat(28.4595) || setLng(77.0266)}
+            className={`sm:px-4 sm:py-2 p-2 border-2 ${
+              activeLocation === "Gurgaon" ? "bg-[#b6b6b6]" : "bg-white"
+            }  rounded-md hover:bg-gray-400 hover:text-white`}
+            onClick={() => handleLocationClick("Gurgaon", 28.4595, 77.0266)}
           >
             Gurgaon
           </button>
@@ -205,24 +223,24 @@ const RestaurantList = () => {
             Rating 4.0+
           </button>
         </div>
-      
-        <div className="resList  grid  grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">{filteredRestaurants.length === 0 ? (
-          <ItemNotFound />
-        ) : (
-          filteredRestaurants.map((restaurants, index) => {
-            return (
-              <Link
-                key={restaurants?.info?.id}
-                to={"/restaurant/" + restaurants?.info?.id}
-              >
-                <ResCard resData={restaurants} />
-              </Link>
-            );
-          })
-        )}</div>
-      </div>
 
-      
+        <div className="resList  grid  grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {filteredRestaurants.length === 0 ? (
+            <ItemNotFound />
+          ) : (
+            filteredRestaurants.map((restaurants, index) => {
+              return (
+                <Link
+                  key={restaurants?.info?.id}
+                  to={"/restaurant/" + restaurants?.info?.id}
+                >
+                  <ResCard resData={restaurants} />
+                </Link>
+              );
+            })
+          )}
+        </div>
+      </div>
     </div>
   );
 };
