@@ -100,7 +100,7 @@ const RestaurantList = () => {
   return listofRestaurants.length === 0 ? (
     <ShimmerofResCard />
   ) : (
-    <div className="main-container   sm:px-8 xl:pl-[200px] xl:pr-[100px] p-4 overflow-hidden">
+    <div className="main-container   sm:px-8 m-auto xl:w-[90vw] 2xl:w-[80vw] p-4 overflow-hidden">
       <div className="location-container ">
         <div className="location flex flex-wrap gap-2 sm:gap-2 mb-6 mt-3 md:my-3 items-center justify-start">
           <button
