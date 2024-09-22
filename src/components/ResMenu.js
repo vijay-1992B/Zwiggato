@@ -169,28 +169,28 @@ const ResMenu = () => {
         <i className="ri-git-commit-line"></i>MENU
         <i className="ri-git-commit-line"></i>
       </h1>
-      <div className="filters  w-screen px-4 lg:p-0 md:w-[800px] mt-12 flex gap-3">
+      <div className="filters  w-screen px-4 lg:p-0 md:w-[800px] mt-12 flex sm:gap-3 gap-1 ">
         <button
           onClick={handleAllFilter}
-          className={`px-3 py-2 border-2 rounded-lg ${filter === "All" ? "bg-[#b6b6b6] text-white" : ""}`}
+          className={`px-[10px] sm:px-3 py-2 border-2 rounded-lg ${filter === "All" ? "bg-[#b6b6b6] text-white" : ""}`}
         >
           All
         </button>
         <button
           onClick={handleVegFilter}
-          className={`px-3 py-2 border-2 rounded-lg ${filter === "Veg" ? "bg-[#1BA672] text-white" : ""}`}
+          className={`px-[10px] sm:px-3 py-2 border-2 rounded-lg ${filter === "Veg" ? "bg-[#1BA672] text-white" : ""}`}
         >
           Veg
         </button>
         <button
           onClick={handleNonVegFilter}
-          className={`px-3 py-2 border-2 rounded-lg ${filter === "Non-Veg" ? "bg-[#E43B4F] text-white" : ""}`}
+          className={`px-[10px] sm:px-3 py-2 border-2 rounded-lg ${filter === "Non-Veg" ? "bg-[#E43B4F] text-white" : ""}`}
         >
           Non-Veg
         </button>
         <button
           onClick={handleBestSellerFilter}
-          className={`px-3 py-2 border-2 rounded-lg ${filter === "BestSeller" ? "bg-[#FF6E5A] text-white" : ""}`}
+          className={`px-[10px] sm:px-3 py-2 border-2 rounded-lg ${filter === "BestSeller" ? "bg-[#FF6E5A] text-white" : ""}`}
         >
           BestSeller
         </button>

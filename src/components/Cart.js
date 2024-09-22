@@ -11,6 +11,7 @@ import EmptyCart from "./EmptyCart";
 import { useState } from "react";
 import OrderPlaced from "./OrderPlaced";
 
+
 const Cart = () => {
   const [OrderPlacedStatus, setOrderPlacedStatus] = useState(false);
   const cartItems = useSelector((store) => store.cart.items);
@@ -187,6 +188,7 @@ const Cart = () => {
           >
             PLACE ORDER
           </button>
+          
         </div>
       </div>
     </div>
