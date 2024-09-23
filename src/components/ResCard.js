@@ -24,13 +24,13 @@ const ResCard = ({ resData }) => {
         className="w-full h-full rounded-2xl object-cover"
       />
       <div className="absolute inset-0 flex items-end justify-end sm:p-2 p-1">
-        <h4 className="text-white text-[11px] sm:text-xs sm:text-[13px] font-semibold sm:font-bold bg-[#256FEF] rounded-md py-[3px] px-[2px] sm:px-[5px]">
+        <h4 className={`text-white text-[11px] sm:text-xs sm:text-[13px] font-semibold sm:font-bold ${aggregatedDiscountInfoV3?.header ? "bg-[#256FEF]" : null} rounded-md py-[3px] px-[2px] sm:px-[5px]`}>
           {aggregatedDiscountInfoV3?.header
             ? aggregatedDiscountInfoV3?.header
             : null}{" "}
           {aggregatedDiscountInfoV3?.subHeader
             ? aggregatedDiscountInfoV3?.subHeader
-            : aggregatedDiscountInfoV3?.discountTag}
+            : aggregatedDiscountInfoV3?.discountTag }
         </h4>
       </div>
     </div>
