@@ -169,7 +169,7 @@ const ResMenu = () => {
         <i className="ri-git-commit-line"></i>MENU
         <i className="ri-git-commit-line"></i>
       </h1>
-      <div className="filters  w-screen px-4 lg:p-0 md:w-[800px] mt-12 flex sm:gap-3 gap-1 ">
+      <div className="filters  w-screen px-4 lg:p-0 md:w-[800px] mt-12 flex flex-wrap sm:gap-3 gap-1 ">
         <button
           onClick={handleAllFilter}
           className={`px-[10px] sm:px-3 py-2 border-2 rounded-lg ${filter === "All" ? "bg-[#b6b6b6] text-white" : ""}`}

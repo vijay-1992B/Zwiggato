@@ -11,6 +11,7 @@ import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 import Offline from "./Offline";
 import TopBrands from "./TopBrands";
 import ItemNotFound from "./ItemNotFound";
+import Error from "./Error";
 
 const RestaurantList = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
@@ -48,46 +49,50 @@ const RestaurantList = () => {
   };
 
   const handleLocationClick = (location, lat, lng) => {
-    
     setActiveLocation(location); // Set the active location
     setLat(lat); // Assuming setLat and setLng are defined in the component
     setLng(lng);
   };
 
   const fetchData = async () => {
-    const raw = await fetch(
-      `https://my-backend-server-delta.vercel.app/api/restaurants?lat=${lat}&lng=${lng}`
-    );
-    
+    try {
+      const raw = await fetch(
+        `https://my-backend-server-delta.vercel.app/api/restaurants?lat=${lat}&lng=${lng}`
+      );
 
-    const data = await raw.json();
-    console.log(data);
+      const data = await raw.json();
 
-    setListofRestaurants(
-      data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+      console.log(data);
+      if(data?.data?.cards[0]?.card?.card?.["@type"] === "type.googleapis.com/swiggy.seo.widgets.v1.SwiggyNotPresent") return console.log("location unservicable")
 
-    setFilteredRestaurants(
-      data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+      setListofRestaurants(
+        data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
 
-    setAllData(data?.data);
+      setFilteredRestaurants(
+        data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
 
-    setWomData(
-      data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
-    );
+      setAllData(data?.data);
 
-    setTopBrands(
-      data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+      setWomData(
+        data?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
+      );
+
+      setTopBrands(
+        data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+    } catch (error) {
+      console.log("Error fetching data", error);
+    }
   };
 
   useEffect(() => {
-    
     fetchData();
   }, [lat, lng]);
-
-  
 
   useEffect(() => {
     const filteredList = listofRestaurants.filter(
