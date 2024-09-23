@@ -5,13 +5,13 @@ import { RESTAURANT_LIST_API } from "../utils/constants";
 import WhatsOnYourMind from "./WhatsOnYourMind";
 
 import ShimmerofResCard from "./ShimmerofResCard";
-import { Link } from "react-router-dom";
+import { Link , useNavigate , Navigate} from "react-router-dom";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 
 import Offline from "./Offline";
 import TopBrands from "./TopBrands";
 import ItemNotFound from "./ItemNotFound";
-import Error from "./Error";
+
 
 const RestaurantList = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
@@ -53,7 +53,7 @@ const RestaurantList = () => {
     setLat(lat); // Assuming setLat and setLng are defined in the component
     setLng(lng);
   };
-
+  const navigate = useNavigate();
   const fetchData = async () => {
     try {
       const raw = await fetch(
@@ -63,7 +63,14 @@ const RestaurantList = () => {
       const data = await raw.json();
 
       console.log(data);
-      if(data?.data?.cards[0]?.card?.card?.["@type"] === "type.googleapis.com/swiggy.seo.widgets.v1.SwiggyNotPresent") return console.log("location unservicable")
+      if (
+        data?.data?.cards[0]?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.seo.widgets.v1.SwiggyNotPresent"
+      ) {
+        console.log("location not available");
+        navigate("/locationUnservicable"); // Redirect to the error route
+        return null; // Prevent further execution
+      }
 
       setListofRestaurants(
         data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
@@ -113,7 +120,7 @@ const RestaurantList = () => {
   const status = useOnlineStatus();
 
   if (status === false) return <Offline />;
-
+ 
   return listofRestaurants.length === 0 ? (
     <ShimmerofResCard />
   ) : (

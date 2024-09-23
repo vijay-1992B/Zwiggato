@@ -17,6 +17,7 @@ import store from "./utils/store";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LocationUnservicable from "./components/LocationUnservicable";
 
 const Cart = lazy(() => import("./components/Cart"));
 
@@ -70,7 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <ResMenu />,
-      },
+      },{
+        path: "/locationUnservicable",
+        element: <LocationUnservicable />, 
+      }
     ],
     errorElement: <Error />,
   },
