@@ -10,8 +10,7 @@ import {
 import EmptyCart from "./EmptyCart";
 import { useState } from "react";
 import OrderPlaced from "./OrderPlaced";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+
 
 
 
