@@ -10,8 +10,8 @@
   "author": "Abhay Sharma",
   "license": "ISC",
   "dependencies": {
+    
     "@reduxjs/toolkit": "^2.2.7",
-
     "axios": "^1.7.7",
     "parcel": "^2.12.0",
     "prettier": "^3.3.3",

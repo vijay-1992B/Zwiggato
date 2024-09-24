@@ -21,10 +21,13 @@ import LocationUnservicable from "./components/LocationUnservicable";
 
 const Cart = lazy(() => import("./components/Cart"));
 
+
+
 const App = function () {
   return (
     <>
       <Provider store={store}>
+        
         <ToastContainer />
         <Header />
         <Outlet />
@@ -53,7 +56,7 @@ const router = createBrowserRouter([
         element: <Offers />,
       },
       {
-        path: "help",
+        path: "/help",
         element: <Help />,
       },
       {
