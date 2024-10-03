@@ -30,3 +30,19 @@ Check out the live demo here: [zwiggato.vercel.app](https://zwiggato.vercel.app)
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/Abhay-04/Zwiggato.git
+
+
+2. **Install dependencies:**:
+   ```bash
+   npm install   
+
+3. **Start the development server:**:
+   ```bash
+   npm run start   
+
+
+
+## Contributing
+
+Feel free to fork the repository and contribute by submitting a pull request.
+
