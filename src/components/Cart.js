@@ -11,10 +11,6 @@ import EmptyCart from "./EmptyCart";
 import { useState } from "react";
 import OrderPlaced from "./OrderPlaced";
 
-
-
-
-
 const Cart = () => {
   const [OrderPlacedStatus, setOrderPlacedStatus] = useState(false);
   const cartItems = useSelector((store) => store.cart.items);
@@ -80,19 +76,24 @@ const Cart = () => {
               </div>
               <div className="w-full h-auto">
                 <div>
-                  <h1>
-                    {item.card.info.itemAttribute.vegClassifier == "VEG" ? (
-                      <img
-                        className="size-5"
-                        src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg"
-                      />
-                    ) : (
-                      <img
-                        className="size-5"
-                        src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg"
-                      />
-                    )}
-                  </h1>
+                  <div className="test flex gap-2">
+                    <h1>
+                      {item.card.info.itemAttribute.vegClassifier == "VEG" ? (
+                        <img
+                          className="size-5"
+                          src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Veg_symbol.svg"
+                        />
+                      ) : (
+                        <img
+                          className="size-5"
+                          src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Non_veg_symbol.svg"
+                        />
+                      )}
+                    </h1>
+                    <p className="text-[#FF6E5A] text-sm font-semibold">
+                      {item.card.info?.isBestseller ? "Bestseller" : null}
+                    </p>
+                  </div>
                   <h1 className="font-bold ">{item.card.info.name}</h1>
                 </div>
                 <h1 className="py-2 text-sm font-normal">
@@ -191,7 +192,6 @@ const Cart = () => {
           >
             PLACE ORDER
           </button>
-          
         </div>
       </div>
     </div>
