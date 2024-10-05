@@ -21,13 +21,10 @@ import LocationUnservicable from "./components/LocationUnservicable";
 
 const Cart = lazy(() => import("./components/Cart"));
 
-
-
 const App = function () {
   return (
     <>
       <Provider store={store}>
-        
         <ToastContainer />
         <Header />
         <Outlet />
@@ -74,15 +71,21 @@ const router = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <ResMenu />,
-      },{
+      },
+      {
         path: "/locationUnservicable",
-        element: <LocationUnservicable />, 
-      }
+        element: <LocationUnservicable />,
+      },
     ],
+    
     errorElement: <Error />,
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={router} />);
+root.render(
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+);
