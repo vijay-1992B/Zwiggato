@@ -10,14 +10,14 @@ const Error = () => {
   return (
     <>
       <Header />
-      <div className=" w-[100%] h-[100%]">
-        <div className="bg-w flex justify-around py-[100px] px-[300px] ">
+      <div className="sm:px-8 m-auto xl:w-[90vw] 2xl:w-[80vw] p-6 overflow-hidden">
+        <div className="flex flex-col sm:flex-row justify-center  items-center my-14 sm:mt-10 ">
           <img
-            className="w-[500px] h-[400px]"
+            className="sm:w-[500px] sm:h-[400px]"
             src="https://b.zmtcdn.com/images/z404x2.png?output-format=webp"
           ></img>
-          <div className="flex  flex-col text-center justify-center">
-            <h4 className="self-center w-[350px] text-center  ">
+          <div className="flex  flex-col text-center justify-center pt-12 px-8 ">
+            <h4 className="self-center w-[350px] text-center ">
               This is a 404 page and we think it's fairly clear You aren't going
               to find what you're looking for here But we know you're hungry, so
               don't fret or rage Hit that big red button to go back to our
