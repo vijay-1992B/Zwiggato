@@ -34,12 +34,13 @@ const RestaurantList = () => {
     if (!geolocationAPI) {
       console.log("Geolocation API is not available in your browser!");
     } else {
-      listofRestaurants.length = 0;
+      
       geolocationAPI.getCurrentPosition(
         (position) => {
           const { coords } = position;
           setLat(coords.latitude);
           setLng(coords.longitude);
+          listofRestaurants.length = 0;
         },
         (error) => {
           console.log("Something went wrong getting your position!");
@@ -53,6 +54,8 @@ const RestaurantList = () => {
     setActiveLocation(location); // Set the active location
     setLat(lat); // Assuming setLat and setLng are defined in the component
     setLng(lng);
+    
+    
   };
   const navigate = useNavigate();
   const fetchData = async () => {
