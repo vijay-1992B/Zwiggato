@@ -5,13 +5,12 @@ import { RESTAURANT_LIST_API } from "../utils/constants";
 import WhatsOnYourMind from "./WhatsOnYourMind";
 
 import ShimmerofResCard from "./ShimmerofResCard";
-import { Link , useNavigate , Navigate} from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 
 import Offline from "./Offline";
 import TopBrands from "./TopBrands";
 import ItemNotFound from "./ItemNotFound";
-
 
 const RestaurantList = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
@@ -35,6 +34,7 @@ const RestaurantList = () => {
     if (!geolocationAPI) {
       console.log("Geolocation API is not available in your browser!");
     } else {
+      listofRestaurants.length = 0;
       geolocationAPI.getCurrentPosition(
         (position) => {
           const { coords } = position;
@@ -49,6 +49,7 @@ const RestaurantList = () => {
   };
 
   const handleLocationClick = (location, lat, lng) => {
+    listofRestaurants.length = 0;
     setActiveLocation(location); // Set the active location
     setLat(lat); // Assuming setLat and setLng are defined in the component
     setLng(lng);
@@ -120,7 +121,7 @@ const RestaurantList = () => {
   const status = useOnlineStatus();
 
   if (status === false) return <Offline />;
- 
+
   return listofRestaurants.length === 0 ? (
     <ShimmerofResCard />
   ) : (
