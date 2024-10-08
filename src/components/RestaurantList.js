@@ -32,9 +32,8 @@ const RestaurantList = () => {
   const geolocationAPI = navigator.geolocation;
   const getUserCoordinates = () => {
     if (!geolocationAPI) {
-      console.log("Geolocation API is not available in your browser!");
+     
     } else {
-      
       geolocationAPI.getCurrentPosition(
         (position) => {
           const { coords } = position;
@@ -43,7 +42,7 @@ const RestaurantList = () => {
           listofRestaurants.length = 0;
         },
         (error) => {
-          console.log("Something went wrong getting your position!");
+          
         }
       );
     }
@@ -54,8 +53,6 @@ const RestaurantList = () => {
     setActiveLocation(location); // Set the active location
     setLat(lat); // Assuming setLat and setLng are defined in the component
     setLng(lng);
-    
-    
   };
   const navigate = useNavigate();
   const fetchData = async () => {
@@ -66,12 +63,12 @@ const RestaurantList = () => {
 
       const data = await raw.json();
 
-      console.log(data);
+     
       if (
         data?.data?.cards[0]?.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.seo.widgets.v1.SwiggyNotPresent"
       ) {
-        console.log("location not available");
+        
         navigate("/locationUnservicable"); // Redirect to the error route
         return null; // Prevent further execution
       }
@@ -97,7 +94,7 @@ const RestaurantList = () => {
           ?.restaurants
       );
     } catch (error) {
-      console.log("Error fetching data", error);
+     
     }
   };
 
@@ -118,6 +115,7 @@ const RestaurantList = () => {
           .toLowerCase()
           .includes(searchText.trim().toLowerCase())
     );
+    
     setFilteredRestaurants(filteredList);
   }, [searchText]);
 
@@ -217,11 +215,12 @@ const RestaurantList = () => {
               const aboveFourPointFiveList = listofRestaurants.filter(
                 (restaurants) => restaurants.info.avgRating >= 4.5
               );
+              
               setIsSecondBtnActive(!isSecondBtnActive);
               setIsThirdBtnActive(false);
 
               setFilteredRestaurants(aboveFourPointFiveList);
-              console.log(aboveFourPointFiveList);
+             
             }}
           >
             Rating 4.5+
@@ -239,7 +238,7 @@ const RestaurantList = () => {
               setIsSecondBtnActive(false);
 
               setFilteredRestaurants(aboveFourList);
-              console.log(aboveFourList);
+              
             }}
           >
             Rating 4.0+

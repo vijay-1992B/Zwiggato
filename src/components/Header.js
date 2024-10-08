@@ -5,7 +5,7 @@ import { useState } from "react";
 // import useOnlineStatus from "../utils/hooks/useOnlineStatus";
 
 const Header = (props) => {
-  console.log(props);
+ 
 
   const cartItems = useSelector((store) => store.cart.items);
 

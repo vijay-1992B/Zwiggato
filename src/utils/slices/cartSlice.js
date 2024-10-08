@@ -20,11 +20,11 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action) => {
       const itemId = action.payload.id;
-      console.log(itemId);
+      
       const existingItem = state.items.find(
         (item) => item.card.info.id === itemId
       );
-      console.log(existingItem);
+      
 
       if (existingItem) {
         if (existingItem.count > 1) {

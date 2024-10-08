@@ -8,7 +8,7 @@ import ResCard from "./ResCard";
 import { CDN_URL } from "../utils/constants";
 
 const TopBrands = ({ data, dataT }) => {
-  console.log(data, dataT);
+  
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;

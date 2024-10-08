@@ -14,7 +14,7 @@ import OrderPlaced from "./OrderPlaced";
 const Cart = () => {
   const [OrderPlacedStatus, setOrderPlacedStatus] = useState(false);
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  
 
   const t = cartItems.map((i) =>
     Math.round(

@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { CDN_URL } from "../utils/constants";
 
 function WhatsOnYourMind({ data }) {
-  console.log(data);
+ 
 
   const settings = {
     dots: false,
