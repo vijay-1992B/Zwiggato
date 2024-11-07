@@ -1,4 +1,5 @@
 # Zwiggato
+# Zwiggato
 
 Zwiggato is a restaurant discovery app built using React, designed to showcase restaurants based on your location. This project leverages Swiggy's live API, enabling a seamless user experience with a config-driven UI inspired by Akshay Saini's **Namaste React** series.
 
